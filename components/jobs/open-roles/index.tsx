@@ -1,4 +1,7 @@
-import { ChevronDown } from "lucide-react";
+"use client";
+
+import { ChevronDown, FilterX } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
@@ -9,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/common/dropdown";
 import { Search } from "@/components/common/search";
+import { useQueryParams } from "@/hooks/common/query-params";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OpenRoles: FC = () => {
@@ -32,28 +36,63 @@ export const OpenRoles: FC = () => {
   );
 };
 
+const experienceLevels = [
+  { label: "All", value: "" },
+  { label: "Beginner", value: "beginner" },
+  { label: "Intermediate", value: "intermediate" },
+  { label: "Advanced", value: "advanced" },
+];
+
+const jobTypes = [
+  { label: "All", value: "" },
+  {
+    label: "Full-time",
+    value: "full_time",
+  },
+  {
+    label: "Part-time",
+    value: "part_time",
+  },
+  {
+    label: "Internship",
+    value: "internship",
+  },
+  {
+    label: "Contract",
+    value: "contract",
+  },
+];
+
+const jobStyles = [
+  { label: "All", value: "" },
+  {
+    label: "On-site",
+    value: "on_site",
+  },
+  {
+    label: "Remote",
+    value: "remote",
+  },
+  {
+    label: "Hybrid",
+    value: "hybrid",
+  },
+];
+
 const RoleFilter: FC = () => {
+  const experience = useQueryParams("experience_level");
+  const type = useQueryParams("type");
+  const style = useQueryParams("style");
+  const router = useRouter();
+
+  const handleClearFilters = () => {
+    router.push("?", { scroll: false });
+  };
+
   return (
     <div
       className={"flex justify-center md:items-center gap-2 md:gap-6 flex-wrap"}
     >
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            className={"bg-[#F5F5F5] text-xs md:text-sm"}
-            variant={"ghost"}
-          >
-            <span>Category</span>
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
@@ -65,10 +104,15 @@ const RoleFilter: FC = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
+          {experienceLevels.map((item) => (
+            <DropdownMenuItem
+              key={item.value}
+              role={"button"}
+              onClick={() => experience.handleSetQueryParam(item.value)}
+            >
+              {item.label}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
       <DropdownMenu>
@@ -82,16 +126,21 @@ const RoleFilter: FC = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
+          {jobTypes.map((item) => (
+            <DropdownMenuItem
+              key={item.value}
+              role={"button"}
+              onClick={() => type.handleSetQueryParam(item.value)}
+            >
+              {item.label}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className={"bg-[#F5F5F5] text-xs md:text-sm text-xs md:text-sm"}
+            className={"bg-[#F5F5F5] md:text-sm text-xs"}
             variant={"ghost"}
           >
             <span>Job style</span>
@@ -99,47 +148,25 @@ const RoleFilter: FC = () => {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
+          {jobStyles.map((item) => (
+            <DropdownMenuItem
+              key={item.value}
+              role={"button"}
+              onClick={() => style.handleSetQueryParam(item.value)}
+            >
+              {item.label}
+            </DropdownMenuItem>
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
-
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            className={"bg-[#F5F5F5] text-xs md:text-sm"}
-            variant={"ghost"}
-          >
-            <span>Location</span>
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            className={"bg-[#F5F5F5] text-xs md:text-sm"}
-            variant={"ghost"}
-          >
-            <span>Date</span>
-            <ChevronDown />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className={"w-56"}>
-          <DropdownMenuItem>Item 1</DropdownMenuItem>
-          <DropdownMenuItem>Item 2</DropdownMenuItem>
-          <DropdownMenuItem>Item 3</DropdownMenuItem>
-          <DropdownMenuItem>Item 4</DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <Button
+        onClick={handleClearFilters}
+        className={"hover:text-secondary"}
+        variant={"ghost"}
+      >
+        <span>Clear filters</span>
+        <FilterX />
+      </Button>
     </div>
   );
 };

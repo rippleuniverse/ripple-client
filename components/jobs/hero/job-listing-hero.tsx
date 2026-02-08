@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -9,9 +11,12 @@ import {
 } from "@/components/common/breadcrumb";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
+import { useRole } from "@/hooks/roles";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const JobListingHero: FC = () => {
+  const role = useRole();
+
   return (
     <section>
       <Container
@@ -27,22 +32,22 @@ export const JobListingHero: FC = () => {
               </BreadcrumbItem>
               <BreadcrumbSeparator className={"text-white"} />
               <BreadcrumbItem className={"text-white"}>
-                Job ID 3742
+                Job ID {role.data?.id}
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
           <h1
             className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
-          >
-            senior <br /> software <br /> developer
-          </h1>
+            dangerouslySetInnerHTML={{
+              __html: role.data?.name.replaceAll(" ", "<br/>") ?? "",
+            }}
+          />
           <p
             className={
-              "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
+              "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left line-clamp-3"
             }
           >
-            Our ideal Software Engineer will be an integral contributor to the
-            current and next generation of our APP.
+            {role.data?.description}
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>
@@ -78,27 +83,33 @@ export const JobListingHero: FC = () => {
               <ul className={"space-y-8"}>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Company:</span>{" "}
-                  <span className={"font-medium"}>Name of company</span>
+                  <span className={"font-medium"}>
+                    {role.data?.company_name}
+                  </span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Location:</span>{" "}
-                  <span className={"font-medium"}>Lagos</span>
+                  <span className={"font-medium"}>
+                    {role.data?.company_location}
+                  </span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Job type:</span>{" "}
-                  <span className={"font-medium"}>Full time</span>
+                  <span className={"font-medium"}>{role.data?.type}</span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Salary:</span>{" "}
-                  <span className={"font-medium"}>$10,000/month</span>
+                  <span className={"font-medium"}>{role.data?.salary}</span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Experience level:</span>{" "}
-                  <span className={"font-medium"}>Senior</span>
+                  <span className={"font-medium"}>
+                    {role.data?.experience_level}
+                  </span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Job style:</span>{" "}
-                  <span className={"font-medium"}>Remote</span>
+                  <span className={"font-medium"}>{role.data?.style}</span>
                 </li>
               </ul>
             </div>

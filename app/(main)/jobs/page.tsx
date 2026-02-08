@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 import { HeadSection } from "@/components/home/head-section";
 import { Hero } from "@/components/jobs/hero";
 import { OpenRoles } from "@/components/jobs/open-roles";
@@ -24,8 +25,10 @@ export default function Page() {
         />
       </HeadSection>
       <div className="space-y-8 bg-white">
-        <OpenRoles />
-        <Roles />
+        <Suspense>
+          <OpenRoles />
+          <Roles />
+        </Suspense>
       </div>
     </>
   );

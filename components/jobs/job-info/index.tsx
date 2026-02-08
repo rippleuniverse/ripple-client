@@ -1,71 +1,56 @@
+"use client";
+
 import { Check } from "lucide-react";
 import { ComponentProps, FC, PropsWithChildren } from "react";
 import { Container } from "@/components/common/container";
+import { useRole } from "@/hooks/roles";
 import { creatoDisplay } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
 
 export const JobInfo: FC = () => {
+  const role = useRole();
   return (
     <section className={"bg-white"}>
       <Container className={"max-w-md lg:max-w-7xl py-8 gap-8"}>
         <InfoBlock title={"About the company"}>
-          <p>
-            Our mission is simple: we want to set people free to do meaningful
-            work. People love our software—and it turns out that people love
-            working here too. We&apos;ve been recognized as a &#34;Best Company
-            to Work For” and we&apos;re proud of our team for creating software
-            that makes an impact in the lives of HR pros and employees all over
-            the world.
-          </p>
+          <p>{role.data?.about_company}</p>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"What you’ll do"}>
-          <p>
-            Our ideal Software Engineer will be an integral contributor to the
-            current and next generation of our APP. You&apos;ll be working on
-            multiple projects to continue making us the xxx. If you get a kick
-            out of solving problems and building beautiful world-class software.
-          </p>
+          <p>{role.data?.description}</p>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"What you’ll need to get the job done"}>
           <ul className={"text-sm md:text-base space-y-3"}>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
-            <li className={"flex items-center gap-5"}>
-              <Check className={"stroke-1"} />
-              <span>3+ years of experience in web development</span>
-            </li>
+            {role.data?.responsibilities.map((item, index) => (
+              <li key={index} className={"flex items-center gap-5"}>
+                <Check className={"stroke-1"} />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
         </InfoBlock>
         <InfoSeparator />
+        <InfoBlock title={"What we require"}>
+          <ul className={"text-sm md:text-base space-y-3"}>
+            {role.data?.requirements.map((item, index) => (
+              <li key={index} className={"flex items-center gap-5"}>
+                <Check className={"stroke-1"} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </InfoBlock>
+        <InfoSeparator />
+
         <InfoBlock title={"Benefits"}>
           <InfoList>
-            <InfoListItem>
-              3+ years of experience in web development
-            </InfoListItem>
-            <InfoListItem>
-              3+ years of experience in web development
-            </InfoListItem>
-            <InfoListItem>
-              3+ years of experience in web development
-            </InfoListItem>
-            <InfoListItem>
-              3+ years of experience in web development
-            </InfoListItem>
-            <InfoListItem>
-              3+ years of experience in web development
-            </InfoListItem>
+            {role.data?.benefits.map((item, index) => (
+              <li key={index} className={"flex items-center gap-5"}>
+                <Check className={"stroke-1"} />
+                <span>{item}</span>
+              </li>
+            ))}
           </InfoList>
         </InfoBlock>
       </Container>

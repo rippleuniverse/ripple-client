@@ -3,7 +3,7 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FC } from "react";
-import { cn } from "@/lib/utils";
+import { cn, debounce } from "@/lib/utils";
 
 export type PaginationProps = {
   total: number;
@@ -29,34 +29,45 @@ export const Pagination: FC<PaginationProps> = ({
 
   const handlePreviousPage = () => {
     if (noPrevPage) return;
-    const otherFields = searchParams.toString();
     const page = searchParams.get("page");
-    otherFields.replace(`page=${page}`, "");
 
-    router.push(`?page=${currentPage - 1}&${otherFields}`, { scroll: false });
+    debounce(() => {
+      const otherFields = searchParams
+        .toString()
+        .replaceAll(`page=${page}`, "");
+
+      router.push(`?page=${currentPage - 1}&${otherFields}`, { scroll: false });
+    }, 300)();
   };
 
   const handleNextPage = () => {
     if (noNextPage) return;
-    const otherFields = searchParams.toString();
     const page = searchParams.get("page");
-    otherFields.replace(`page=${page}`, "");
 
-    router.push(`?page=${currentPage + 1}&${otherFields}`, { scroll: false });
+    debounce(() => {
+      const otherFields = searchParams
+        .toString()
+        .replaceAll(`page=${page}`, "");
+
+      router.push(`?page=${currentPage + 1}&${otherFields}`, { scroll: false });
+    }, 300)();
   };
 
   const handleToPage = (page: number) => {
-    const otherFields = searchParams.toString();
     const current_page = searchParams.get("page");
-    otherFields.replace(`page=${current_page}`, "");
 
-    router.push(`?page=${page}&${otherFields}`, { scroll: false });
+    debounce(() => {
+      const otherFields = searchParams
+        .toString()
+        .replaceAll(`page=${current_page}`, "");
+
+      router.push(`?page=${page}&${otherFields}`, { scroll: false });
+    }, 300)();
   };
 
-  const pages = Array.from(
-    { length: lastPage },
-    (_, i) => i + currentPage,
-  ).splice(0, 5);
+  const pages = Array.from({ length: lastPage }, (_, i) => i + currentPage)
+    .splice(0, 5)
+    .filter((page) => page <= lastPage);
 
   return (
     <div className={"flex items-center justify-between"}>
@@ -69,6 +80,7 @@ export const Pagination: FC<PaginationProps> = ({
         </button>
         {pages.map((page) => (
           <button
+            key={page}
             className={cn(
               "text-black cursor-pointer font-bold text-sm px-2 pb-1 hidden md:inline border-b-[0.1rem]",
               selectedPage === page.toString()

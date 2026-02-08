@@ -1,3 +1,5 @@
+"use client";
+
 import { LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,17 +14,26 @@ import {
 } from "@/components/common/carousel";
 import { ArrowFillLeft } from "@/components/common/icons/ArrowFillLeft";
 import { ArrowFillRight } from "@/components/common/icons/ArrowFillRight";
+import { useEvent } from "@/hooks/events";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const EventCarouselBanner: FC = () => {
+  const event = useEvent();
+
   return (
     <section className={"lg:pb-32"}>
       <Carousel className={"w-full"}>
         <CarouselContent>
           <CarouselItem className={"max-w-[80vw] md:max-w-[70vw]"}>
             <div
+              style={{
+                background: `url(${event.data?.featured_image})`,
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
               className={
-                "w-[80vw] md:w-[70wh] bg-[url(/images/events/banner-1.png)] bg-cover bg-center h-52 md:h-96 lg:h-140 rounded-2xl relative flex flex-col justify-end pb-8"
+                "w-[80vw] md:w-[70wh] bg-cover bg-center h-52 md:h-96 lg:h-140 rounded-2xl relative flex flex-col justify-end pb-8"
               }
             >
               <div className="mx-auto w-11/12 flex gap-4 relative z-10">
@@ -34,16 +45,14 @@ export const EventCarouselBanner: FC = () => {
                   <h1
                     className={`lg:text-3xl xl:text-[3.4rem] text-[#FFF8C6] ${madeSoulmaze.className} line-clamp-2`}
                   >
-                    EVENT TITLE HERE
+                    {event.data?.title}
                   </h1>
                   <p
                     className={
                       "text-[#FFFFFFB2] text-xs md:text-sm lg:text-base xl:text-lg line-clamp-2 lg:line-clamp-3"
                     }
                   >
-                    Join creatives and technologists for an immersive session
-                    exploring ideas, tools, and conversations shaping the future
-                    of creative tech.
+                    {event.data?.description}
                   </p>
 
                   <div className="block xl:hidden max-w-xs">
@@ -56,9 +65,10 @@ export const EventCarouselBanner: FC = () => {
                   }
                 >
                   <div className="space-y-3 text-[#FFFFFFB2] text-xs">
-                    <p>[Wednesday, 13 May, 2026]</p>
-                    <p>[10:00UTC – 17:00UTC]</p>
-                    <p>Virtual / Physical</p>
+                    <p>[{event.data?.date}]</p>
+                    <p className={"capitalize"}>
+                      {event.data?.type} / {event.data?.access}
+                    </p>
                     <p className="flex items-center space-x-2 text-[#FFF8C6]">
                       <LinkIcon className={"size-4"} />
                       <Link href={""}>[Venue or Online link placeholder]</Link>
@@ -69,21 +79,24 @@ export const EventCarouselBanner: FC = () => {
               </div>
             </div>
           </CarouselItem>
-
-          <CarouselItem className={"max-w-[80vw] md:max-w-[70vw]"}>
-            <div
-              className={
-                "w-[80vw] md:w-[70wh] bg-[url(/images/events/banner-2.jpg)] bg-cover bg-center h-52 md:h-96 lg:h-140 rounded-2xl relative flex flex-col justify-end pb-8"
-              }
-            ></div>
-          </CarouselItem>
-          <CarouselItem className={"max-w-[80vw] md:max-w-[70vw]"}>
-            <div
-              className={
-                "w-[80vw] md:w-[70wh] bg-[url(/images/events/banner-2.jpg)] bg-cover bg-center h-52 md:h-96 lg:h-140 rounded-2xl relative flex flex-col justify-end pb-8"
-              }
-            ></div>
-          </CarouselItem>
+          {event.data?.images.map((image, index) => (
+            <CarouselItem
+              key={index}
+              className={"max-w-[80vw] md:max-w-[70vw]"}
+            >
+              <div
+                style={{
+                  background: `url(${image})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                className={
+                  "w-[80vw] md:w-[70wh] h-52 md:h-96 lg:h-140 rounded-2xl relative flex flex-col justify-end pb-8"
+                }
+              ></div>
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious
           className={"left-0"}

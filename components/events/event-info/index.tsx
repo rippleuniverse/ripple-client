@@ -1,4 +1,5 @@
-import { Check } from "lucide-react";
+"use client";
+
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import {
@@ -13,138 +14,117 @@ import {
   InfoListItem,
   InfoSeparator,
 } from "@/components/jobs/job-info";
+import { type Ticket } from "@/helpers/events";
+import { useEvent } from "@/hooks/events";
 import { creatoDisplay, manRope } from "@/lib/fonts";
 
 export const EventInfo: FC = () => {
+  const event = useEvent();
+  const facilitatorBgs = ["#FFF8C6", "#FFE0D6", "#FFD7FE"];
+
+  function randomBg() {
+    return Math.floor(Math.random() * 3);
+  }
+
   return (
     <section className={"bg-white"}>
       <Container className={"max-w-md lg:max-w-7xl py-8 gap-8"}>
         <InfoBlock title={"About the Event"}>
-          <p>
-            This event brings together creatives, technologists, and industry
-            voices to explore how creativity and technology intersect in
-            real-world practice. Through talks, conversations, and interactive
-            sessions, attendees will gain practical insights, new perspectives,
-            and meaningful connections.
-          </p>
+          <p>{event.data?.description}</p>
         </InfoBlock>
         <InfoSeparator />
-        <InfoBlock title={"What to Expect"}>
-          <InfoList>
-            <InfoListItem>Curated talks and conversations</InfoListItem>
-            <InfoListItem>Practical insights you can apply</InfoListItem>
-            <InfoListItem>Interactive sessions and live Q&A</InfoListItem>
-            <InfoListItem>
-              Opportunities to connect with speakers and attendees
-            </InfoListItem>
-            <InfoListItem>
-              Access to post-event resources (where applicable)
-            </InfoListItem>
-          </InfoList>
-        </InfoBlock>
-        <InfoSeparator />
-        <InfoBlock title={"Who This Event Is For"}>
-          <InfoList>
-            <InfoListItem>Creatives exploring technology</InfoListItem>
-            <InfoListItem>Creatives exploring technology</InfoListItem>
-            <InfoListItem>Creatives exploring technology</InfoListItem>
-            <InfoListItem>Creatives exploring technology</InfoListItem>
-            <InfoListItem>Creatives exploring technology</InfoListItem>
-          </InfoList>
-        </InfoBlock>
-        <InfoSeparator />
-        <InfoBlock title={"Speakers & Facilitators"}>
-          <Carousel className={"w-full"}>
-            <CarouselContent className={"gap-4"}>
-              <CarouselItem className={"max-w-xs lg:max-w-lg"}>
-                <div
-                  className={
-                    "w-xs lg:w-lg h-40 bg-[#FFF8C6] rounded-xl border-[#F2F2F2] border-[0.15rem] py-6 px-4 space-y-2"
-                  }
-                >
-                  <h4
-                    className={`${manRope.className} font-medium text-base lg:text-lg`}
-                  >
-                    Name
-                  </h4>
-                  <p className={"text-[#696969] text-sm lg:text-base"}>
-                    Role / Company
-                  </p>
-                  <p className={"text-[#4E4E4E] text-xs lg:text-sm w-10/12"}>
-                    Short sentence about the speaker/facilitator here.
-                    Preferably a 2 liner
-                  </p>
-                </div>
-              </CarouselItem>
-              <CarouselItem className={"max-w-xs lg:max-w-lg"}>
-                <div
-                  className={
-                    "w-xs lg:w-lg h-40 bg-[#FFE0D6] rounded-xl border-[#F2F2F2] border-[0.15rem] py-6 px-4 space-y-2"
-                  }
-                >
-                  <h4 className={`${manRope.className} font-medium lg:text-lg`}>
-                    Name
-                  </h4>
-                  <p className={"text-[#696969] text-sm lg:text-base"}>
-                    Role / Company
-                  </p>
-                  <p className={"text-[#4E4E4E] text-xs lg:text-sm w-10/12"}>
-                    Short sentence about the speaker/facilitator here.
-                    Preferably a 2 liner
-                  </p>
-                </div>
-              </CarouselItem>
-              <CarouselItem className={"max-w-xs lg:max-w-lg"}>
-                <div
-                  className={
-                    "w-xs lg:w-lg h-40 bg-[#FFD7FE] rounded-xl border-[#F2F2F2] border-[0.15rem] py-6 px-4 space-y-2"
-                  }
-                >
-                  <h4 className={`${manRope.className} font-medium lg:text-lg`}>
-                    Name
-                  </h4>
-                  <p className={"text-[#696969] text-sm lg:text-base"}>
-                    Role / Company
-                  </p>
-                  <p className={"text-[#4E4E4E] text-xs lg:text-sm w-10/12"}>
-                    Short sentence about the speaker/facilitator here.
-                    Preferably a 2 liner
-                  </p>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-          </Carousel>
-        </InfoBlock>
-        <InfoSeparator />
+        {event.data?.what_to_expect.length ? (
+          <>
+            <InfoBlock title={"What to Expect"}>
+              <InfoList>
+                {event.data?.what_to_expect.map((item, index) => (
+                  <InfoListItem key={index}>{item}</InfoListItem>
+                ))}
+              </InfoList>
+            </InfoBlock>
+            <InfoSeparator />
+          </>
+        ) : null}
+        {event.data?.who_to_expect.length ? (
+          <>
+            <InfoBlock title={"Who This Event Is For"}>
+              <InfoList>
+                {event.data?.who_to_expect.map((item, index) => (
+                  <InfoListItem key={index}>{item}</InfoListItem>
+                ))}
+              </InfoList>
+            </InfoBlock>
+            <InfoSeparator />
+          </>
+        ) : null}
+        {event.data?.facilitators.length ? (
+          <>
+            <InfoBlock title={"Speakers & Facilitators"}>
+              <Carousel className={"w-full"}>
+                <CarouselContent className={"gap-4"}>
+                  {event.data?.facilitators.map((item, index) => (
+                    <CarouselItem
+                      key={index}
+                      className={"max-w-xs lg:max-w-lg"}
+                    >
+                      <div
+                        style={{
+                          backgroundColor: facilitatorBgs[randomBg()],
+                        }}
+                        className={
+                          "w-xs lg:w-lg h-40  rounded-xl border-[#F2F2F2] border-[0.15rem] py-6 px-4 space-y-2"
+                        }
+                      >
+                        <h4
+                          className={`${manRope.className} font-medium text-base lg:text-lg`}
+                        >
+                          {item.name}
+                        </h4>
+                        <p className={"text-[#696969] text-sm lg:text-base"}>
+                          {item.role} / {item.company}
+                        </p>
+                        <p
+                          className={
+                            "text-[#4E4E4E] text-xs lg:text-sm w-10/12"
+                          }
+                        >
+                          {item.description}
+                        </p>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+            </InfoBlock>
+            <InfoSeparator />
+          </>
+        ) : null}
+        {event.data?.agendas.length ? (
+          <>
+            <InfoBlock title={"Agenda (If applicable)"}>
+              <InfoList>
+                <InfoListItem>Welcome & Introduction</InfoListItem>
+                <InfoListItem>Main Session / Talk</InfoListItem>
+                <InfoListItem>Panel or Discussion</InfoListItem>
+                <InfoListItem>Q&A</InfoListItem>
+                <InfoListItem>Networking / Close</InfoListItem>
+              </InfoList>
+            </InfoBlock>
+            <InfoSeparator />
+          </>
+        ) : null}
 
-        <InfoBlock title={"Agenda (If applicable)"}>
-          <InfoList>
-            <InfoListItem>Welcome & Introduction</InfoListItem>
-            <InfoListItem>Main Session / Talk</InfoListItem>
-            <InfoListItem>Panel or Discussion</InfoListItem>
-            <InfoListItem>Q&A</InfoListItem>
-            <InfoListItem>Networking / Close</InfoListItem>
-          </InfoList>
-        </InfoBlock>
-        <InfoSeparator />
         <InfoBlock title={"Tickets & Access"}>
           <Carousel className={"w-full"}>
             <CarouselContent className={"gap-5"}>
-              <Ticket
-                name={"Regular Ticket"}
-                bgColor={"#FFD7FE"}
-                mainColor={"#D066CE"}
-              />
-              <Ticket
-                name={"VIP Ticket"}
-                bgColor={"#FFE0D6"}
-                mainColor={"#EF4920"}
-              />
-              <Ticket
-                name={"VVIP Ticket"}
-                bgColor={"#FFFFE9"}
-                mainColor={"#F4EE25"}
-              />
+              {event.data?.tickets.map((ticket) => (
+                <Ticket
+                  key={ticket.id}
+                  bgColor={"#FFD7FE"}
+                  mainColor={"#D066CE"}
+                  ticket={ticket}
+                />
+              ))}
             </CarouselContent>
           </Carousel>
           <p
@@ -164,9 +144,9 @@ export const EventInfo: FC = () => {
 type TicketProps = {
   bgColor: string;
   mainColor: string;
-  name: string;
+  ticket: Ticket;
 };
-const Ticket: FC<TicketProps> = ({ bgColor, mainColor, name }) => {
+const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
   return (
     <CarouselItem className={"max-w-[16rem] lg:max-w-md"}>
       <div
@@ -212,28 +192,24 @@ const Ticket: FC<TicketProps> = ({ bgColor, mainColor, name }) => {
           <span
             className={"rounded-full bg-white px-3 font-semibold py-2 text-xs"}
           >
-            Event title
+            {ticket.name}
           </span>
         </div>
         <h2
           className={`${creatoDisplay.className} text-4xl md:text-2xl lg:text-[5rem] font-medium h-[35%] md:h-1/2 w-10/12`}
         >
-          {name}
+          {ticket.name}
         </h2>
         <div className="space-y-3">
           <p className={"font-bold text-[#4E4E4E] text-sm "}>
             What&apos;s included in the ticket:
           </p>
           <div className="flex flex-wrap items-center gap-1 md:gap-3">
-            <InfoListItem className={"text-xs text-[#4E4E4E]"}>
-              Launch
-            </InfoListItem>
-            <InfoListItem className={"text-xs text-[#4E4E4E]"}>
-              Launch
-            </InfoListItem>
-            <InfoListItem className={"text-xs text-[#4E4E4E]"}>
-              Launch
-            </InfoListItem>
+            {ticket.features.map((item, index) => (
+              <InfoListItem key={index} className={"text-xs text-[#4E4E4E]"}>
+                {item}
+              </InfoListItem>
+            ))}
           </div>
         </div>
         <div
