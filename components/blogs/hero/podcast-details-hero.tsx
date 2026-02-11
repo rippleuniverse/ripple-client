@@ -1,14 +1,17 @@
-import { AudioLines } from "lucide-react";
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import { Button } from "@/components/common/button";
+import { Audio } from "@/components/blogs/hero/audio";
 import { Container } from "@/components/common/container";
 import { ArrowFillLeft } from "@/components/common/icons/ArrowFillLeft";
-import { Play } from "@/components/common/icons/play";
+import { usePodcast } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const PodcastDetailsHero: FC = () => {
+  const podcast = usePodcast();
+
   return (
     <section>
       <Container
@@ -30,29 +33,17 @@ export const PodcastDetailsHero: FC = () => {
           <h1
             className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
           >
-            Episode title
+            {podcast.data?.title}
           </h1>
           <p
             className={
               "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
             }
           >
-            From beginner-friendly pathways to advanced creative tech labs,
-            Ripple offers programs designed for real-world impact.
+            {podcast.data?.description}
           </p>
           <div className={"flex justify-center gap-2 lg:justify-start"}>
-            <Button
-              className={"bg-[#FFF8C6]"}
-              size={"sm"}
-              variant={"secondary"}
-            >
-              <span>Start listening</span>
-              <span className={"flex"}>
-                <AudioLines />
-                <AudioLines />
-              </span>
-              <Play />
-            </Button>
+            <Audio />
           </div>
         </div>
         <div className={"w-full lg:w-1/2 flex justify-center"}>
@@ -75,15 +66,17 @@ export const PodcastDetailsHero: FC = () => {
                 "hidden lg:block w-24 xl:w-36 absolute -right-20 xl:-right-30 rotate-90 top-1/4"
               }
             />
-            <Image
-              src={"/images/blogs/podcast.png"}
-              alt={"Job"}
-              width={350}
-              height={500}
-              className={
-                "relative z-10 size-full object-cover rounded-3xl border-4 border-[#F2F2F233]"
-              }
-            />
+            {podcast.data && (
+              <Image
+                src={podcast.data.featured_image}
+                alt={podcast.data.title}
+                width={350}
+                height={500}
+                className={
+                  "relative z-10 size-full object-cover rounded-3xl border-4 border-[#F2F2F233]"
+                }
+              />
+            )}
           </div>
         </div>
       </Container>

@@ -1,9 +1,18 @@
+"use client";
+
 import { FC } from "react";
 import { Podcast } from "@/components/blogs/podcast-items/podcasts";
 import { Container } from "@/components/common/container";
+import { useRelatedPodcasts } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OtherPodcasts: FC = () => {
+  const podcasts = useRelatedPodcasts();
+
+  if (!podcasts.data?.length) {
+    return null;
+  }
+
   return (
     <section
       className={
@@ -19,10 +28,9 @@ export const OtherPodcasts: FC = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 *:bg-white">
-          <Podcast />
-          <Podcast />
-          <Podcast />
-          <Podcast />
+          {podcasts.data?.map((item) => (
+            <Podcast podcast={item} key={item.id} />
+          ))}
         </div>
       </Container>
     </section>

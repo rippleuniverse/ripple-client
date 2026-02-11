@@ -1,9 +1,14 @@
+"use client";
+
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { FC } from "react";
 import { Articles } from "@/components/blogs/blog-items/articles";
 import { Podcasts } from "@/components/blogs/podcast-items/podcasts";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
 import { Search } from "@/components/common/search";
+import { useCategories } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const PodcastItems: FC = () => {
@@ -41,28 +46,38 @@ export const PodcastItems: FC = () => {
 };
 
 export const PodcastsFilter: FC = () => {
+  const categories = useCategories();
+  const searchParams = useSearchParams();
+  const selectedCategoryId = searchParams.get("podcast_category");
+  const noCategory = selectedCategoryId === "" || !selectedCategoryId;
+
+  console.log(noCategory);
+
   return (
     <div
       className={"flex justify-center md:items-center gap-2 md:gap-4 flex-wrap"}
     >
-      <Button size={"sm"} className={"text-xs"}>
-        All
+      <Button
+        size={"sm"}
+        asChild
+        className={`text-xs ${noCategory ? "" : "bg-[#F5F5F5] text-black"}`}
+      >
+        <Link scroll={false} href={"?"}>
+          All
+        </Link>
       </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Creative Tech
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        AI & Design
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Careers
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Culture
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Industry Insights
-      </Button>
+      {categories.data?.map((item) => (
+        <Button
+          asChild
+          key={item.id}
+          size={"sm"}
+          className={`text-xs ${selectedCategoryId === item.id ? "" : "bg-[#F5F5F5] text-black"}`}
+        >
+          <Link scroll={false} href={`?podcast_category=${item.id}`}>
+            {item.name}
+          </Link>
+        </Button>
+      ))}
     </div>
   );
 };
