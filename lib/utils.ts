@@ -51,3 +51,10 @@ export function debounce(
     timeoutId = window.setTimeout(() => func(...args), wait);
   };
 }
+
+export function currencyFormatter(currency: string, amount: number) {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: currency,
+  }).format(amount);
+}

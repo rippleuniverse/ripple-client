@@ -7,6 +7,7 @@ import { Button } from "@/components/common/button";
 import { NavLinks, NavLinksSM } from "@/components/common/header/nav-links";
 import { useAuth } from "@/hooks/auth";
 import { env } from "@/lib/env";
+import { CurrencySwitch } from "./currency-switch";
 
 export const Header: FC = () => {
   return (
@@ -16,8 +17,9 @@ export const Header: FC = () => {
           <NavLogo />
           <NavLinks />
         </div>
-        <div className="flex space-x-6">
+        <div className="flex md:space-x-6">
           <AuthActions />
+          <CurrencySwitch />
           <NavLinksSM />
         </div>
       </nav>

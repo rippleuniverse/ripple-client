@@ -1,17 +1,28 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
+  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/common/breadcrumb";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
+import { usePrice } from "@/hooks/common/currency";
+import { useLocalStorage } from "@/hooks/common/local-storage";
+import { useProduct } from "@/hooks/shop";
 import { madeSoulmaze } from "@/lib/fonts";
+import { currencyFormatter } from "@/lib/utils";
+import { Currency } from "@/types/common";
 
 export const ProductHero: FC = () => {
+  const product = useProduct();
+  const price = usePrice(product.data?.price);
+
   return (
     <section>
       <Container
@@ -31,21 +42,32 @@ export const ProductHero: FC = () => {
                   Ripple Shop
                 </span>
               </BreadcrumbItem>
-              <BreadcrumbItem className={"text-white/50"}>Books</BreadcrumbItem>
+              <BreadcrumbItem className={"text-white/50"}>
+                <BreadcrumbLink
+                  className={"text-white/50 hover:text-white-40"}
+                  href={`/shop/products?category_id=${product.data?.category.id}`}
+                >
+                  {product.data?.category.name}
+                </BreadcrumbLink>
+              </BreadcrumbItem>
               <BreadcrumbSeparator className={"text-white"} />
-              <BreadcrumbItem className={"text-white"}>Digital</BreadcrumbItem>
+              <BreadcrumbItem className={"text-white"}>
+                {product.data?.title}
+              </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
           <div className="space-y-4">
             <h1
               className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
             >
-              Product Name
+              {product.data?.title}
             </h1>
             <h2
               className={`text-center lg:text-left text-[#FFF8C6] ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
             >
-              $25
+              {price
+                ? currencyFormatter(price.currency, price.amount)
+                : "Price not available"}
             </h2>
           </div>
           <p
@@ -53,8 +75,7 @@ export const ProductHero: FC = () => {
               "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
             }
           >
-            A clear, one- or two-line summary explaining what the product is and
-            why it matters.
+            {product.data?.description}
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>
@@ -82,15 +103,17 @@ export const ProductHero: FC = () => {
                 "hidden lg:block w-24 xl:w-36 absolute -right-20 xl:-right-30 rotate-90 top-1/4"
               }
             />
-            <Image
-              src={"/images/home/event-1.png"}
-              alt={"Job"}
-              width={350}
-              height={500}
-              className={
-                "relative z-10 size-full object-cover rounded-3xl border-4 border-[#F2F2F233]"
-              }
-            />
+            {product.data && (
+              <Image
+                src={product.data.featured_image}
+                alt={product.data.title}
+                width={350}
+                height={500}
+                className={
+                  "relative z-10 size-full object-cover rounded-3xl border-4 border-[#F2F2F233]"
+                }
+              />
+            )}
           </div>
         </div>
       </Container>

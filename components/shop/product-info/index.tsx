@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+"use client";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
@@ -8,56 +8,47 @@ import {
   InfoListItem,
   InfoSeparator,
 } from "@/components/jobs/job-info";
+import { usePrice } from "@/hooks/common/currency";
+import { useProduct } from "@/hooks/shop";
 import { creatoDisplay, manRope } from "@/lib/fonts";
+import { currencyFormatter } from "@/lib/utils";
 
 export const ProductInfo: FC = () => {
+  const product = useProduct();
+  const price = usePrice(product.data?.price);
+
   return (
     <section className={"bg-white"}>
       <Container className={"max-w-md lg:max-w-7xl py-8 gap-8"}>
         <InfoBlock title={"About This Product"}>
-          <p>
-            This toolkit is designed to help creatives and technologists
-            structure ideas, plan projects, and move from concept to execution
-            with clarity and confidence.
-          </p>
+          <p>{product.data?.about}</p>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"What You'll Get"}>
           <InfoList>
-            <InfoListItem>Downloadable files or physical item</InfoListItem>
-            <InfoListItem>
-              Supporting guides or instructions (if applicable)
-            </InfoListItem>
-            <InfoListItem>Lifetime access (for digital products)</InfoListItem>
-            <InfoListItem>Updates (if applicable)</InfoListItem>
+            {product.data?.benefits.map((item, index) => (
+              <InfoListItem key={index}>{item}</InfoListItem>
+            ))}
           </InfoList>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"Who This Is For"}>
           <InfoList>
-            <InfoListItem>Downloadable files or physical item</InfoListItem>
-            <InfoListItem>
-              Supporting guides or instructions (if applicable)
-            </InfoListItem>
-            <InfoListItem>Lifetime access (for digital products)</InfoListItem>
-            <InfoListItem>Updates (if applicable)</InfoListItem>
+            {product.data?.target_users.map((item, index) => (
+              <InfoListItem key={index}>{item}</InfoListItem>
+            ))}
           </InfoList>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"How to Use This Product"}>
-          <p>
-            Short guidance on how the product fits into a workflow or daily
-            practice.
-          </p>
+          <p>{product.data?.how_to_use}</p>
         </InfoBlock>
         <InfoSeparator />
         <InfoBlock title={"Access & Delivery"}>
           <InfoList>
-            <InfoListItem>Downloadable files or physical item</InfoListItem>
-            <InfoListItem>
-              Supporting guides or instructions (if applicable)
-            </InfoListItem>
-            <InfoListItem>Lifetime access (for digital products)</InfoListItem>
+            {product.data?.access_delivery.map((item, index) => (
+              <InfoListItem key={index}>{item}</InfoListItem>
+            ))}
           </InfoList>
         </InfoBlock>
       </Container>
@@ -71,7 +62,9 @@ export const ProductInfo: FC = () => {
             <h3
               className={`${creatoDisplay.className} text-xl md:text-3xl lg:text-4xl xl:text-5xl text-white`}
             >
-              $25
+              {price
+                ? currencyFormatter(price.currency, price.amount)
+                : "Price not available"}
             </h3>
             <Button className={"bg-white text-black"}>Buy now</Button>
           </div>

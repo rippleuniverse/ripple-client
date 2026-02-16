@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import Image from "next/image";
+import { Suspense } from "react";
 import { HeadSection } from "@/components/home/head-section";
 import { Categories } from "@/components/shop/categories";
 import { Designed } from "@/components/shop/designed";
@@ -28,9 +29,11 @@ export default function Page() {
         <Hero />
       </HeadSection>
       <div className={"mt-8"}>
-        <Categories />
-        <Designed />
-        <Newsletter />
+        <Suspense>
+          <Categories />
+          <Designed />
+          <Newsletter />
+        </Suspense>
       </div>
     </>
   );

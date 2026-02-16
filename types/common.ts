@@ -14,3 +14,5 @@ export type Paginated<T> = {
     to: number;
   };
 };
+
+export type Currency = "USD" | "NGN";
