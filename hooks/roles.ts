@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "next/navigation";
-import { getOpenRoles, getRole } from "@/helpers/roles";
+import { getOpenRoles, getOverviewRoles, getRole } from "@/helpers/roles";
 
 export function useOpenRoles() {
   const searchParams = useSearchParams();
@@ -26,5 +26,12 @@ export function useRole() {
   return useQuery({
     queryFn: fetcher,
     queryKey: ["role", slug],
+  });
+}
+
+export function useRolesOverview() {
+  return useQuery({
+    queryFn: getOverviewRoles,
+    queryKey: ["roles-overview"],
   });
 }

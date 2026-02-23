@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
-import { ArrowFillLeft } from "@/components/common/icons/ArrowFillLeft";
+import { ArrowFillLeft } from "@/components/common/icons/arrow-fill-left";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const BlogDetailsHero: FC = () => {

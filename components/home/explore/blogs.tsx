@@ -91,13 +91,13 @@ const BlogList: FC = () => {
   );
 };
 
-type BlogProps = {
+export type BlogProps = {
   type: "blog" | "podcast";
   title: string;
   image: string;
 };
 
-const Blog: FC<BlogProps> = ({ type, title, image }) => {
+export const Blog: FC<BlogProps> = ({ type, title, image }) => {
   return (
     <div className={"rounded-3xl relative"}>
       <Badge

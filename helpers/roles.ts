@@ -73,3 +73,11 @@ export const submitApplication = async (
     data: formData,
   });
 };
+
+export const getOverviewRoles = async (): Promise<OpenRole[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/roles/overview",
+  }).then((res) => res.data.data);
+};

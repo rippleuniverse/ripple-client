@@ -1,0 +1,83 @@
+import { LogOut } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { FC } from "react";
+import { Gear } from "@/components/common/icons/gear";
+import { Grid } from "@/components/common/icons/grid";
+import { Search } from "@/components/common/icons/search";
+import { Star } from "@/components/common/icons/star";
+import { env } from "@/lib/env";
+
+export const DashboardSidebar: FC = () => {
+  return (
+    <aside
+      className={
+        "hidden bg-black w-2/12 pl-7 py-7 rounded-2xl lg:flex flex-col justify-between h-screen"
+      }
+    >
+      <div className={"space-y-4"}>
+        <div>
+          <Link href={"/"}>
+            <Image
+              src={"/images/logo.png"}
+              unoptimized
+              className={"w-16 md:w-36"}
+              alt={env.app.name ?? "Logo"}
+              width={112}
+              height={40}
+            />
+          </Link>
+        </div>
+        <div className={"space-y-3"}>
+          <Link
+            href={"/"}
+            className={
+              "flex items-center space-x-3 text-lg py-3 px-4 rounded-l-full bg-white text-secondary"
+            }
+          >
+            <Grid className={"size-5"} />
+            <span>Dashboard</span>
+          </Link>
+          <Link
+            href={"/"}
+            className={
+              "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:fill-secondary hover:text-secondary"
+            }
+          >
+            <Search className={"size-5"} />
+            <span>Explore</span>
+          </Link>
+          <Link
+            href={"/"}
+            className={
+              "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
+            }
+          >
+            <Star className={"size-5"} />
+            <span>Purchases</span>
+          </Link>
+          <Link
+            href={"/"}
+            className={
+              "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
+            }
+          >
+            <Gear className={"size-5"} />
+            <span>Settings</span>
+          </Link>
+        </div>
+      </div>
+      <div>
+        <Link
+          href={"/"}
+          className={
+            "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
+          }
+        >
+          <LogOut className={"size-5"} />
+          <span>Logout</span>
+        </Link>
+      </div>
+    </aside>
+  );
+};

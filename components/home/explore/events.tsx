@@ -88,7 +88,7 @@ export const Events: FC = () => {
   );
 };
 
-const Event: FC<EventProps> = ({ date, title, image }) => {
+export const Event: FC<EventProps> = ({ date, title, image }) => {
   return (
     <div className={"bg-[#BFF0F0] p-4 rounded-3xl space-y-3"}>
       <Image

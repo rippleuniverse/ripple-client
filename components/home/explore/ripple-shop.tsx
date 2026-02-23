@@ -3,14 +3,16 @@ import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { madeSoulmaze } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
-export const RippleShop: FC = () => {
+export const RippleShop: FC<{ className?: string }> = ({ className }) => {
+  const c = cn(
+    "bg-[#FFEEE9] rounded-xl p-8 w-full  xl:w-3/12 space-y-6 flex flex-col justify-between",
+    className,
+  );
+
   return (
-    <div
-      className={
-        "bg-[#FFEEE9] rounded-xl p-8 w-full  xl:w-3/12 space-y-6 flex flex-col justify-between"
-      }
-    >
+    <div className={c}>
       <div className="space-y-4">
         <h2
           className={`${madeSoulmaze.className} text-lg md:text-xl lg:text-2xl xl:text-[1.5rem] uppercase`}

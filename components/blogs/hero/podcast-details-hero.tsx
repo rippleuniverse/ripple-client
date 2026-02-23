@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { Audio } from "@/components/blogs/hero/audio";
 import { Container } from "@/components/common/container";
-import { ArrowFillLeft } from "@/components/common/icons/ArrowFillLeft";
+import { ArrowFillLeft } from "@/components/common/icons/arrow-fill-left";
 import { usePodcast } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 

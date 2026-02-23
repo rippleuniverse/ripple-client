@@ -4,13 +4,13 @@ import { checkSiteUnlocked, getUser } from "./helpers/auth";
 
 export async function proxy(request: NextRequest) {
   try {
-    const siteUnlockKey = request.cookies.get("site_unlocked_token")?.value;
-
-    const checkSiteUnlock = await checkSiteUnlocked(siteUnlockKey);
-
-    if (!checkSiteUnlock) {
-      return NextResponse.redirect(new URL("/under-construction", request.url));
-    }
+    // const siteUnlockKey = request.cookies.get("site_unlocked_token")?.value;
+    //
+    // const checkSiteUnlock = await checkSiteUnlocked(siteUnlockKey);
+    //
+    // if (!checkSiteUnlock) {
+    //   return NextResponse.redirect(new URL("/under-construction", request.url));
+    // }
   } catch (err) {
     return NextResponse.redirect(new URL("/under-construction", request.url));
   }

@@ -1,10 +1,20 @@
-import { Instrument_Sans, Inter, Manrope } from "next/font/google";
+import {
+  Instrument_Sans,
+  Inter,
+  Manrope,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
 import localFont from "next/font/local";
 
 export const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
 });
+
+export const plusJarkataSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
+});
+
 export const manRope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin"],

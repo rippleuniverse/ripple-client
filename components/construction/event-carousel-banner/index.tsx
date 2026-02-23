@@ -1,7 +1,6 @@
 "use client";
 
 import { LinkIcon } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
@@ -12,8 +11,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/common/carousel";
-import { ArrowFillLeft } from "@/components/common/icons/ArrowFillLeft";
-import { ArrowFillRight } from "@/components/common/icons/ArrowFillRight";
+import { ArrowFillLeft } from "@/components/common/icons/arrow-fill-left";
+import { ArrowFillRight } from "@/components/common/icons/arrow-fill-right";
 import { useEvent } from "@/hooks/events";
 import { madeSoulmaze } from "@/lib/fonts";
 
