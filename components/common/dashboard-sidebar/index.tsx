@@ -38,15 +38,15 @@ export const DashboardSidebar: FC = () => {
             <Grid className={"size-5"} />
             <span>Dashboard</span>
           </Link>
-          <Link
-            href={"/"}
-            className={
-              "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:fill-secondary hover:text-secondary"
-            }
-          >
-            <Search className={"size-5"} />
-            <span>Explore</span>
-          </Link>
+          {/*<Link*/}
+          {/*  href={"/"}*/}
+          {/*  className={*/}
+          {/*    "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:fill-secondary hover:text-secondary"*/}
+          {/*  }*/}
+          {/*>*/}
+          {/*  <Search className={"size-5"} />*/}
+          {/*  <span>Explore</span>*/}
+          {/*</Link>*/}
           <Link
             href={"/"}
             className={
