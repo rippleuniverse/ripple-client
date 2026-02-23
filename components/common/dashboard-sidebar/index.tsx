@@ -48,7 +48,7 @@ export const DashboardSidebar: FC = () => {
           {/*  <span>Explore</span>*/}
           {/*</Link>*/}
           <Link
-            href={"/"}
+            href={"/dashboard/purchases"}
             className={
               "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
             }
