@@ -9,7 +9,7 @@ export default function DashboardLayout({
   return (
     <div className={"flex gap-6 p-4 bg-[#FAFAFA]"}>
       <DashboardSidebar />
-      <main className={"space-y-12 lg:w-9/12 w-full"}>
+      <main className={"space-y-12 xl:w-10/12 w-full"}>
         {children}
         <div className={"h-[0.06rem] bg-gray-300"}></div>
         <DashboardFooter />
