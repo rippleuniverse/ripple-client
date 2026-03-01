@@ -61,7 +61,7 @@ export const NavLinksSM: FC = () => {
               {user.data ? (
                 <li>
                   <Button asChild variant={"outline"}>
-                    <Link href={"/"}>Dashboard</Link>
+                    <Link href={"/dashboard"}>Dashboard</Link>
                   </Button>
                 </li>
               ) : (
