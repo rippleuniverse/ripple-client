@@ -79,7 +79,9 @@ export const ProductHero: FC = () => {
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>
-              <Link href={"#scroll-apply"}>Buy now</Link>
+              <Link href={`/shop/products/${product.data?.id}/checkout`}>
+                Buy now
+              </Link>
             </Button>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 import { getUser } from "@/helpers/auth";
 
 export function useAuth() {
@@ -15,4 +16,13 @@ export function useAuth() {
   });
 
   return { user };
+}
+
+export function useAuthenticated() {
+  const { user } = useAuth();
+  const router = useRouter();
+  if (!user.isLoading && !user.data) {
+    console.log("Push");
+    router.push("/signin");
+  }
 }

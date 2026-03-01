@@ -1,7 +1,12 @@
+"use client";
+
 import { FC } from "react";
+import { useAuth } from "@/hooks/auth";
 import { madeSoulmaze } from "@/lib/fonts";
 import styles from "./styles.module.css";
 export const DigitalPass: FC = () => {
+  const { user } = useAuth();
+
   return (
     <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
       <div
@@ -36,14 +41,14 @@ export const DigitalPass: FC = () => {
         <div className="flex justify-between">
           <div className={"text-xs uppercase"}>
             <p className={"text-white/60 font-bold "}>Card Holder</p>
-            <h3 className={`font-bold text-sm md:text-xl text-white`}>
-              ALEX RIVERA
+            <h3 className={`font-bold text-sm md:text-xl text-white uppercase`}>
+              {user.data?.full_name}
             </h3>
           </div>
           <div className={"text-xs uppercase"}>
             <p className={"text-white/60 font-bold "}>Member Since</p>
             <h3 className={`font-bold text-sm md:text-xl text-white`}>
-              JAN 2024
+              {user.data?.created_at}
             </h3>
           </div>
         </div>

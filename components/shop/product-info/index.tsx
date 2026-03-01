@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
@@ -66,7 +67,11 @@ export const ProductInfo: FC = () => {
                 ? currencyFormatter(price.currency, price.amount)
                 : "Price not available"}
             </h3>
-            <Button className={"bg-white text-black"}>Buy now</Button>
+            <Button className={"bg-white text-black"} asChild>
+              <Link href={`/shop/products/${product.data?.id}/checkout`}>
+                Buy now
+              </Link>
+            </Button>
           </div>
           <p
             className={`text-[#A9A9A9] ${manRope.className} font-medium text-xs md:text-xl`}

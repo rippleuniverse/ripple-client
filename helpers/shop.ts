@@ -3,7 +3,7 @@ import { Paginated } from "@/types/common";
 
 export type Price = {
   currency: "USD" | "NGN";
-  amount: number;
+  amount: number | string;
 };
 
 export type CategoryWithProduct = {

@@ -15,8 +15,10 @@ import {
   InfoSeparator,
 } from "@/components/jobs/job-info";
 import { type Ticket } from "@/helpers/events";
+import { usePrice } from "@/hooks/common/currency";
 import { useEvent } from "@/hooks/events";
 import { creatoDisplay, manRope } from "@/lib/fonts";
+import { currencyFormatter } from "@/lib/utils";
 
 export const EventInfo: FC = () => {
   const event = useEvent();
@@ -147,6 +149,8 @@ type TicketProps = {
   ticket: Ticket;
 };
 const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
+  const price = usePrice(ticket.price);
+
   return (
     <CarouselItem className={"max-w-[16rem] lg:max-w-md"}>
       <div
@@ -221,7 +225,7 @@ const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
           <h5
             className={`text-white ${creatoDisplay.className} text-2xl  lg:text-6xl font-medium`}
           >
-            $100
+            {price && currencyFormatter(price.currency, price.amount)}
           </h5>
           <Button size={"sm"} className={"bg-white text-black px-4"}>
             Buy Ticket

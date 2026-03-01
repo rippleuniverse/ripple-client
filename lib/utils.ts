@@ -52,9 +52,10 @@ export function debounce(
   };
 }
 
-export function currencyFormatter(currency: string, amount: number) {
+export function currencyFormatter(currency: string, amount: string | number) {
+  const parsedAmount = typeof amount === "string" ? parseFloat(amount) : amount;
   return new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: currency,
-  }).format(amount);
+  }).format(parsedAmount);
 }

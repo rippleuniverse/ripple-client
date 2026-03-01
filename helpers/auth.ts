@@ -21,6 +21,7 @@ export type UserProfile = {
   role: UserRole;
   avatar: string | null;
   email_verified_at: string | null;
+  created_at: string;
 };
 
 export const signUp = async (data: SignUpSchemaType) => {

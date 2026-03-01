@@ -34,7 +34,7 @@ export const AuthActions: FC = () => {
     <div className={"hidden xl:flex items-center space-x-6 "}>
       {user.data ? (
         <Button asChild variant={"secondary"}>
-          <Link href={"/"}>Dashboard</Link>
+          <Link href={"/dashboard"}>Dashboard</Link>
         </Button>
       ) : (
         <Button asChild variant={"secondary"}>

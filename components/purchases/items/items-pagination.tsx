@@ -1,15 +1,13 @@
+"use client";
+
 import { FC } from "react";
 import { Pagination } from "@/components/common/pagination";
+import { usePurchasedItems } from "@/hooks/invoice";
 
 export const ItemsPagination: FC = () => {
-  return (
-    <Pagination
-      total={0}
-      currentPage={0}
-      perPage={0}
-      lastPage={0}
-      from={0}
-      to={0}
-    />
-  );
+  const items = usePurchasedItems();
+
+  if (!items.data) return null;
+
+  return <Pagination {...items.data.meta} />;
 };

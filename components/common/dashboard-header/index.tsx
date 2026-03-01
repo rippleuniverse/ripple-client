@@ -1,16 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { Bell } from "@/components/common/icons/bell";
+import { useAuth } from "@/hooks/auth";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const DashboardHeader: FC = () => {
+  const { user } = useAuth();
+
   return (
     <div className={"flex flex-col-reverse md:flex-row justify-between gap-4"}>
       <div className={"space-y-1"}>
         <h1
           className={`${madeSoulmaze.className} text-xl md:text-3xl lg:text-4xl`}
         >
-          Welcome back, <span className="text-[#FF00FF]">Alex!</span>
+          Welcome back,{" "}
+          <span className="text-[#FF00FF]">{user.data?.full_name}!</span>
         </h1>
         <p className={"text-gray-500 text-xs md:text-sm lg:text-base"}>
           You&apos;re making great progress. Ready to dive back in?
@@ -24,8 +30,10 @@ export const DashboardHeader: FC = () => {
 
         <div className={"flex items-center space-x-2"}>
           <div className={"text-xs"}>
-            <p className="font-bold">Alex Rivera</p>
-            <p className="text-secondary font-semibold">PRO member</p>
+            <p className="font-bold">{user.data?.full_name}</p>
+            <p className="text-secondary font-semibold capitalize">
+              {user.data?.role}
+            </p>
           </div>
           <Image
             src={"/images/blogs/avatar.png"}

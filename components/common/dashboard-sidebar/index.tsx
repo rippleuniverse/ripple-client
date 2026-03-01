@@ -3,6 +3,7 @@
 import { LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { Gear } from "@/components/common/icons/gear";
@@ -13,9 +14,28 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/common/sheet";
 import { Breakpoints } from "@/enums/breakpoints";
 import useMediaQuery from "@/hooks/common/media-query";
 import { env } from "@/lib/env";
+import { cn } from "@/lib/utils";
 
+const SIDEBAR_LINKS = [
+  {
+    name: "Dashboard",
+    link: "/dashboard",
+    icon: <Grid className={"size-5"} />,
+  },
+  {
+    name: "Purchases",
+    link: "/dashboard/purchases",
+    icon: <Star className={"size-5"} />,
+  },
+  {
+    name: "Settings",
+    link: "/dashboard/settings",
+    icon: <Gear className={"size-5"} />,
+  },
+];
 export const DashboardSidebar: FC = () => {
   const isDesktop = useMediaQuery(Breakpoints.extraLarge);
+  const pathname = usePathname();
 
   return (
     <>
@@ -44,39 +64,22 @@ export const DashboardSidebar: FC = () => {
                 </Link>
               </div>
               <div className={"space-y-3"}>
-                <SheetTrigger asChild>
-                  <Link
-                    href={"/dashboard"}
-                    className={
-                      "flex items-center space-x-3 text-lg py-3 px-4 rounded-l-full bg-white text-secondary"
-                    }
-                  >
-                    <Grid className={"size-5"} />
-                    <span>Dashboard</span>
-                  </Link>
-                </SheetTrigger>
-                <SheetTrigger asChild>
-                  <Link
-                    href={"/dashboard/purchases"}
-                    className={
-                      "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
-                    }
-                  >
-                    <Star className={"size-5"} />
-                    <span>Purchases</span>
-                  </Link>
-                </SheetTrigger>
-                <SheetTrigger asChild>
-                  <Link
-                    href={"/dashboard/settings"}
-                    className={
-                      "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
-                    }
-                  >
-                    <Gear className={"size-5"} />
-                    <span>Settings</span>
-                  </Link>
-                </SheetTrigger>
+                {SIDEBAR_LINKS.map((item) => (
+                  <SheetTrigger asChild key={item.name}>
+                    <Link
+                      href={item.link}
+                      className={cn(
+                        "flex items-center space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary",
+                        pathname === item.link
+                          ? "bg-white text-secondary"
+                          : "text-[#8E8E8E] fill-[#8E8E8E]",
+                      )}
+                    >
+                      {item.icon}
+                      <span>{item.name}</span>
+                    </Link>
+                  </SheetTrigger>
+                ))}
               </div>
             </div>
             <div>
@@ -112,42 +115,21 @@ export const DashboardSidebar: FC = () => {
               </Link>
             </div>
             <div className={"space-y-3"}>
-              <Link
-                href={"/"}
-                className={
-                  "flex items-center space-x-3 text-lg py-3 px-4 rounded-l-full bg-white text-secondary"
-                }
-              >
-                <Grid className={"size-5"} />
-                <span>Dashboard</span>
-              </Link>
-              {/*<Link*/}
-              {/*  href={"/"}*/}
-              {/*  className={*/}
-              {/*    "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:fill-secondary hover:text-secondary"*/}
-              {/*  }*/}
-              {/*>*/}
-              {/*  <Search className={"size-5"} />*/}
-              {/*  <span>Explore</span>*/}
-              {/*</Link>*/}
-              <Link
-                href={"/dashboard/purchases"}
-                className={
-                  "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
-                }
-              >
-                <Star className={"size-5"} />
-                <span>Purchases</span>
-              </Link>
-              <Link
-                href={"/dashboard/settings"}
-                className={
-                  "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
-                }
-              >
-                <Gear className={"size-5"} />
-                <span>Settings</span>
-              </Link>
+              {SIDEBAR_LINKS.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.link}
+                  className={cn(
+                    "flex items-center space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary",
+                    item.link === pathname
+                      ? "bg-white text-secondary"
+                      : "text-[#8E8E8E] fill-[#8E8E8E]",
+                  )}
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                </Link>
+              ))}
             </div>
           </div>
           <div>
