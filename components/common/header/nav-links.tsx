@@ -17,7 +17,12 @@ export const NavLinks = () => {
   return (
     <div className={"hidden xl:flex items-center space-x-6"}>
       {NAV_LINKS.map((link, index) => (
-        <Link key={index} href={link.link} className={"text-[#F5F3F0B2]"}>
+        <Link
+          key={index}
+          target={link.blank ? "_blank" : ""}
+          href={link.link}
+          className={"text-[#F5F3F0B2]"}
+        >
           {link.name}
         </Link>
       ))}
@@ -42,7 +47,11 @@ export const NavLinksSM: FC = () => {
             <ul className={"space-y-4"}>
               {NAV_LINKS.map((link, index) => (
                 <li key={index}>
-                  <Link href={link.link} className={"w-full block text-lg"}>
+                  <Link
+                    target={link.blank ? "_blank" : ""}
+                    href={link.link}
+                    className={"w-full block text-lg"}
+                  >
                     {link.name}
                   </Link>
                 </li>

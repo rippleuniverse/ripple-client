@@ -1,6 +1,7 @@
 export type NavLink = {
   name: string;
   link: string;
+  blank?: boolean;
 };
 
 export const NAV_LINKS: NavLink[] = [
@@ -18,7 +19,8 @@ export const NAV_LINKS: NavLink[] = [
   },
   {
     name: "Insights",
-    link: "/insights",
+    link: "https://tally.so/r/nr9PE2",
+    blank: true,
   },
   {
     name: "Jobs",
