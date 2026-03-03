@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import {
@@ -150,6 +151,7 @@ type TicketProps = {
 };
 const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
   const price = usePrice(ticket.price);
+  const event = useEvent();
 
   return (
     <CarouselItem className={"max-w-[16rem] lg:max-w-md"}>
@@ -227,8 +229,12 @@ const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
           >
             {price && currencyFormatter(price.currency, price.amount)}
           </h5>
-          <Button size={"sm"} className={"bg-white text-black px-4"}>
-            Buy Ticket
+          <Button asChild size={"sm"} className={"bg-white text-black px-4"}>
+            <Link
+              href={`/events/${event.data?.id}/checkout?ticket_id=${ticket.id}`}
+            >
+              Buy Ticket
+            </Link>
           </Button>
         </div>
       </div>
