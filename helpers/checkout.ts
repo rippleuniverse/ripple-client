@@ -34,6 +34,7 @@ export const shopCheckout = async (
         },
       ],
       save_billing_information: data.saveBillingInfo,
+      coupon_code: data.couponCode,
     },
   }).then((res) => res.data.data.payment_url);
 };
@@ -59,6 +60,7 @@ export const eventCheckout = async (
         city: data.city,
         country: data.country,
       },
+      coupon_code: data.couponCode,
       tickets: data.tickets,
       save_billing_information: data.saveBillingInfo,
     },

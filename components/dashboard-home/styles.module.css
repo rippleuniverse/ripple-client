@@ -1,6 +1,9 @@
 .passcard {
   background: linear-gradient(127.95deg, #ff00ff 0%, #7000ff 100%);
 }
+.inactivepasscard {
+  background: linear-gradient(127.95deg, #1a191a 0%, #77777c 100%);
+}
 
 .icon {
   background-color: rgba(255, 255, 255, 0.2);

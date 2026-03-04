@@ -1,24 +1,46 @@
 "use client";
 
+import { Copy } from "lucide-react";
 import { FC } from "react";
+import { toast } from "react-hot-toast";
+import { Badge } from "@/components/common/badge";
 import { useAuth } from "@/hooks/auth";
+import { useUserCoupon } from "@/hooks/coupon";
 import { madeSoulmaze } from "@/lib/fonts";
 import styles from "./styles.module.css";
 export const DigitalPass: FC = () => {
   const { user } = useAuth();
+  const coupon = useUserCoupon();
+
+  const copyCouponCode = async () => {
+    try {
+      if (!coupon.data) return;
+      await navigator.clipboard.writeText(coupon.data.code);
+      toast.success("Coupon code has been copied to clipboard");
+    } catch (e) {
+      toast.error("Failed to copy coupon code to clipboard");
+    }
+  };
 
   return (
     <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
       <div
-        className={`w-full flex flex-col justify-between p-6 rounded-2xl h-45 lg:h-60 ${styles.passcard}`}
+        className={`w-full flex flex-col justify-between p-6 rounded-2xl h-45 lg:h-60 ${coupon.data?.is_active ? styles.passcard : styles.inactivepasscard}`}
       >
+        {coupon.data?.is_active === false && (
+          <div className="flex justify-end">
+            <Badge className={"font-normal"} variant={"destructive"}>
+              Not active
+            </Badge>
+          </div>
+        )}
         <div className="flex justify-between">
           <div className={"text-xs uppercase"}>
             <p className={"text-white/60 font-bold"}>Ripple Universe ID</p>
             <h3
               className={`${madeSoulmaze.className} text-lg md:text-2xl text-white`}
             >
-              Digital Pass
+              Digital Pass{" "}
             </h3>
           </div>
           <div
@@ -37,6 +59,22 @@ export const DigitalPass: FC = () => {
               />
             </svg>
           </div>
+        </div>
+        <div className={"text-xs uppercase"}>
+          <p className={"text-white/60 font-bold "}>
+            Code ({coupon.data?.percentage_value}% off)
+          </p>
+          <button
+            onClick={copyCouponCode}
+            disabled={!coupon.data}
+            className={
+              "disabled:opacity-50 flex items-center space-x-2 cursor-pointer font-bold text-sm md:text-xl text-white uppercase\`"
+            }
+            title={"Copy coupon code"}
+          >
+            <span>{coupon.data?.code}</span>
+            <Copy className={"size-4"} />
+          </button>
         </div>
         <div className="flex justify-between">
           <div className={"text-xs uppercase"}>

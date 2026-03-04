@@ -70,9 +70,11 @@ export const Form: FC<FormProps> = ({ info, tickets }) => {
           city: info.city,
           country: info.country,
           saveBillingInfo: false,
+          couponCode: null,
         }
       : {
           saveBillingInfo: false,
+          couponCode: null,
         },
   });
 
@@ -166,6 +168,12 @@ export const Form: FC<FormProps> = ({ info, tickets }) => {
         />
         <span className={"text-xs md:text-sm"}>Save billing information?</span>
       </Label>
+      <div>
+        <FormField
+          {...register("couponCode")}
+          label={"Coupon code (Optional)"}
+        />
+      </div>
       <h3 className={`${madeSoulmaze.className}`}>Tickets</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {tickets?.map((ticket, index) => (
@@ -189,6 +197,7 @@ export const Form: FC<FormProps> = ({ info, tickets }) => {
           </Fragment>
         ))}
       </div>
+
       <Button disabled={isPending} size={"xl"}>
         Checkout
       </Button>

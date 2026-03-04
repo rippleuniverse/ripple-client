@@ -225,7 +225,7 @@ const Ticket: FC<TicketProps> = ({ bgColor, mainColor, ticket }) => {
           className={`rounded-4xl px-6 py-4 w-full absolute -bottom-4 left-0 h-20 lg:h-32 flex items-center justify-between`}
         >
           <h5
-            className={`text-white ${creatoDisplay.className} text-2xl  lg:text-6xl font-medium`}
+            className={`text-white ${creatoDisplay.className} text-2xl max-w-8/12 text-wrap wrap-break-word  lg:text-4xl font-medium`}
           >
             {price && currencyFormatter(price.currency, price.amount)}
           </h5>

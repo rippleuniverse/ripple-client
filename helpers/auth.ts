@@ -73,6 +73,15 @@ export const getUser = async (bearerKey?: string): Promise<UserProfile> => {
   }).then((res) => res.data.data);
 };
 
+export const logout = async () => {
+  const { AppAxios } = axiosInstance();
+  await AppAxios({
+    url: "/auth/logout",
+    method: "POST",
+  });
+  Cookies.remove("bearer_key");
+};
+
 export const verifyEmail = async (data: VerifyEmailSchemaType) => {
   const { AppAxios } = axiosInstance();
   return AppAxios({

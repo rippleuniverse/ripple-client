@@ -57,10 +57,12 @@ export const Form: FC<FormProps> = ({ info }) => {
           country: info.country,
           saveBillingInfo: false,
           quantity: 1,
+          couponCode: null,
         }
       : {
           saveBillingInfo: false,
           quantity: 1,
+          couponCode: null,
         },
   });
   const countries = useCountries();
@@ -154,6 +156,12 @@ export const Form: FC<FormProps> = ({ info }) => {
         />
         <span className={"text-xs md:text-sm"}>Save billing information?</span>
       </Label>
+      <div>
+        <FormField
+          {...register("couponCode")}
+          label={"Coupon code (Optional)"}
+        />
+      </div>
       <h3 className={`${madeSoulmaze.className}`}>Product Information</h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <FormField
@@ -166,6 +174,7 @@ export const Form: FC<FormProps> = ({ info }) => {
           })}
         />
       </div>
+
       <Button disabled={isPending} size={"xl"}>
         Checkout
       </Button>

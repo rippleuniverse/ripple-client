@@ -9,6 +9,7 @@ export const ShopCheckoutSchema = z.object({
   city: z.string().min(1, "City is required"),
   country: z.string().min(1, "Country is required"),
   quantity: z.number().min(1, "Quantity is required"),
+  couponCode: z.string().nullable().optional(),
   saveBillingInfo: z.boolean({
     message: "Save billing info is required",
   }),
@@ -30,6 +31,7 @@ export const EventCheckoutSchema = z.object({
   saveBillingInfo: z.boolean({
     message: "Save billing info is required",
   }),
+  couponCode: z.string().nullable().optional(),
   tickets: z.array(TicketSchema).min(1, "At least one ticket is required"),
 });
 

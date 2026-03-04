@@ -1,10 +1,12 @@
 "use client";
 
-import { LogOut, Menu } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
+import { Loader, LogOut, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FC } from "react";
+import { toast } from "react-hot-toast";
 import { Button } from "@/components/common/button";
 import { Gear } from "@/components/common/icons/gear";
 import { Grid } from "@/components/common/icons/grid";
@@ -12,9 +14,10 @@ import { Search } from "@/components/common/icons/search";
 import { Star } from "@/components/common/icons/star";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/common/sheet";
 import { Breakpoints } from "@/enums/breakpoints";
+import { logout } from "@/helpers/auth";
 import useMediaQuery from "@/hooks/common/media-query";
 import { env } from "@/lib/env";
-import { cn } from "@/lib/utils";
+import { cn, errorParser } from "@/lib/utils";
 
 const SIDEBAR_LINKS = [
   {
@@ -36,6 +39,16 @@ const SIDEBAR_LINKS = [
 export const DashboardSidebar: FC = () => {
   const isDesktop = useMediaQuery(Breakpoints.extraLarge);
   const pathname = usePathname();
+  const { mutate: logoutUser, isPending } = useMutation({
+    mutationFn: logout,
+    onSuccess() {
+      toast.success("Logged out successfully. Redirecting to homepage...");
+      window.location.href = "/";
+    },
+    onError(err) {
+      toast.error(errorParser(err));
+    },
+  });
 
   return (
     <>
@@ -83,15 +96,14 @@ export const DashboardSidebar: FC = () => {
               </div>
             </div>
             <div>
-              <Link
-                href={"/"}
+              <button
                 className={
                   "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
                 }
               >
                 <LogOut className={"size-5"} />
                 <span>Logout</span>
-              </Link>
+              </button>
             </div>
           </SheetContent>
         </Sheet>
@@ -133,15 +145,20 @@ export const DashboardSidebar: FC = () => {
             </div>
           </div>
           <div>
-            <Link
-              href={"/"}
+            <button
+              onClick={() => logoutUser()}
+              disabled={isPending}
               className={
-                "flex items-center text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full hover:bg-white hover:text-secondary"
+                "flex items-center hover:cursor-pointer text-[#8E8E8E] fill-[#8E8E8E] space-x-3 text-lg py-3 px-4 rounded-l-full"
               }
             >
-              <LogOut className={"size-5"} />
+              {isPending ? (
+                <Loader className={"size-5 animate-spin"} />
+              ) : (
+                <LogOut className={"size-5"} />
+              )}
               <span>Logout</span>
-            </Link>
+            </button>
           </div>
         </aside>
       )}
