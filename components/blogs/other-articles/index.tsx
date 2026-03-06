@@ -1,9 +1,16 @@
+"use client";
+
 import { FC } from "react";
 import { Article } from "@/components/blogs/blog-items/articles";
 import { Container } from "@/components/common/container";
+import { useRelatedBlogs } from "@/hooks/blogs";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OtherArticles: FC = () => {
+  const blogs = useRelatedBlogs();
+
+  if (!blogs.data?.length) return null;
+
   return (
     <section
       className={
@@ -19,10 +26,9 @@ export const OtherArticles: FC = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 *:bg-white">
-          <Article />
-          <Article />
-          <Article />
-          <Article />
+          {blogs.data?.map((item) => (
+            <Article item={item} key={item.id} />
+          ))}
         </div>
       </Container>
     </section>

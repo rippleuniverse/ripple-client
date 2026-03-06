@@ -1,39 +1,36 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { Pagination } from "@/components/common/pagination";
+import { BlogItem } from "@/helpers/blogs";
+import { useBlogs } from "@/hooks/blogs";
 
 export const Articles: FC = () => {
+  const blogs = useBlogs();
+
   return (
     <div className="space-y-9">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <Article />
-        <Article />
-        <Article />
-        <Article />
-        <Article />
+        {blogs.data?.data.map((item) => (
+          <Article item={item} key={item.id} />
+        ))}
       </div>
-      <Pagination
-        total={1}
-        currentPage={1}
-        perPage={12}
-        lastPage={1}
-        from={1}
-        to={1}
-      />
+      {blogs.data && <Pagination {...blogs.data.meta} />}
     </div>
   );
 };
 
-export const Article: FC = () => {
+export const Article: FC<{ item: BlogItem }> = ({ item }) => {
   return (
     <div className={"bg-gray-100 p-4 rounded-3xl space-y-3"}>
-      <Link href={"/blogs/slug"} className={"block"}>
+      <Link href={`/blogs/${item.slug}`} className={"block"}>
         <Image
           className={"block object-cover w-full rounded-3xl h-72"}
-          src={"/images/home/event-1.png"}
-          alt={"Title here"}
+          src={item.featured_image}
+          alt={item.title}
           width={230}
           height={330}
         />
@@ -41,13 +38,13 @@ export const Article: FC = () => {
       <div className="flex justify-between items-center gap-12">
         <div className={"text-[#4E4E4E]"}>
           <Link
-            href={"/blogs/slug"}
+            href={`/blogs/${item.slug}`}
             className={"font-bold text-sm md:text-base"}
           >
-            Article Title
+            {item.title}
           </Link>
-          <p className={"text-xs md:text-sm"}>
-            Short sentence about the article here. Preferably a 2 liner.{" "}
+          <p className={"text-xs md:text-sm line-clamp-2"}>
+            {item.description}
           </p>
         </div>
         <div>
@@ -57,20 +54,22 @@ export const Article: FC = () => {
       <div className="h-[0.09rem] bg-gray-200"></div>
       <div className="space-y-3">
         <div className={"flex gap-1"}>
-          <span
+          <Link
+            href={`/blogs?category=${item.category.id}`}
+            scroll={false}
             className={"bg-[#E0E2FF] text-xs px-3 py-1 rounded-full text-black"}
           >
-            Article
-          </span>
+            {item.category.name}
+          </Link>
           <span
             className={"bg-gray-200 text-xs px-3 py-1 rounded-full text-black"}
           >
-            5 min read
+            {item.read_time}
           </span>
         </div>
         <div>
           <Link
-            href={"/blogs/slug"}
+            href={`/blogs/${item.slug}`}
             className={
               "text-[#EF4920] flex items-center space-x-1 text-xs md:text-sm"
             }

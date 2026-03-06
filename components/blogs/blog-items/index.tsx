@@ -1,10 +1,15 @@
+"use client";
+
+import Link from "next/link";
 import { FC } from "react";
 import { Articles } from "@/components/blogs/blog-items/articles";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
-
 import { Search } from "@/components/common/search";
+import { useBlogCategories } from "@/hooks/blogs";
+import { useFilter } from "@/hooks/common/filter";
 import { madeSoulmaze } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 export const BlogItems: FC = () => {
   return (
@@ -41,28 +46,36 @@ export const BlogItems: FC = () => {
 };
 
 export const BlogsFilter: FC = () => {
+  const categories = useBlogCategories();
+  const { filterValue, handleFilter } = useFilter("category");
+
   return (
     <div
       className={"flex justify-center md:items-center gap-2 md:gap-4 flex-wrap"}
     >
-      <Button size={"sm"} className={"text-xs"}>
+      <Button
+        onClick={() => handleFilter("")}
+        size={"sm"}
+        className={cn(
+          "text-xs cursor-pointer",
+          !filterValue ? "" : "text-black bg-[#F5F5F5]",
+        )}
+      >
         All
       </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Creative Tech
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        AI & Design
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Careers
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Culture
-      </Button>
-      <Button size={"sm"} className={"text-xs bg-[#F5F5F5] text-black"}>
-        Industry Insights
-      </Button>
+      {categories.data?.map((category) => (
+        <Button
+          onClick={() => handleFilter(category.id)}
+          key={category.id}
+          size={"sm"}
+          className={cn(
+            "text-xs cursor-pointer",
+            filterValue === category.id ? "" : "text-black bg-[#F5F5F5]",
+          )}
+        >
+          {category.name}
+        </Button>
+      ))}
     </div>
   );
 };
