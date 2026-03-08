@@ -1,10 +1,10 @@
 import Cookies from "js-cookie";
-import { Cookie } from "next/font/google";
 import { axiosInstance } from "@/lib/utils";
 import {
   SignInSchemaType,
   SignUpSchemaType,
   UnlockSiteSchemaType,
+  UpdateProfileSchemaType,
   VerifyEmailSchemaType,
 } from "@/schema/auth";
 
@@ -22,6 +22,33 @@ export type UserProfile = {
   avatar: string | null;
   email_verified_at: string | null;
   created_at: string;
+};
+
+export const updateProfile = async (data: UpdateProfileSchemaType) => {
+  const { AppAxios } = axiosInstance();
+
+  const formData = new FormData();
+
+  formData.append("full_name", data.fullName);
+  formData.append("email", data.email);
+
+  if (data.avatar?.file) {
+    formData.append("avatar", data.avatar.file);
+  }
+
+  return AppAxios({
+    url: "/auth/update-profile",
+    method: "POST",
+    data: formData,
+  }).then((res) => res.data.data);
+};
+
+export const removeAvatar = async () => {
+  const { AppAxios } = axiosInstance();
+  return AppAxios({
+    url: "/auth/remove-avatar",
+    method: "DELETE",
+  });
 };
 
 export const signUp = async (data: SignUpSchemaType) => {

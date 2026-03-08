@@ -13,6 +13,11 @@ export const SignUpSchema = z.object({
   emailSubscription: z.boolean(),
 });
 
+export const UpdateProfileSchema = z.object({
+  fullName: z.string().min(1, "Full name is required"),
+  email: z.email("Invalid email address"),
+  avatar: z.any(),
+});
 export const SignInSchema = z.object({
   email: z.email("Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -34,3 +39,4 @@ export type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
 export type VerifyEmailSchemaType = z.infer<typeof VerifyEmailSchema>;
 export type UnlockSiteSchemaType = z.infer<typeof UnlockSiteSchema>;
+export type UpdateProfileSchemaType = z.infer<typeof UpdateProfileSchema>;

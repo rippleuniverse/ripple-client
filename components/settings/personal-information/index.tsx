@@ -1,6 +1,7 @@
 import { IdCard } from "lucide-react";
 import { FC } from "react";
 import { PersonalInformationForm } from "@/components/settings/personal-information/form";
+import { useAuth } from "@/hooks/auth";
 
 export const PersonalInformation: FC = () => {
   return (
