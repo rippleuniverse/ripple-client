@@ -1,7 +1,17 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { Loader, LogOut, Menu } from "lucide-react";
+import {
+  BadgePlusIcon,
+  BookText,
+  CalendarDays,
+  Loader,
+  LogOut,
+  Menu,
+  Podcast,
+  SquarePen,
+  Toolbox,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -10,7 +20,6 @@ import { toast } from "react-hot-toast";
 import { Button } from "@/components/common/button";
 import { Gear } from "@/components/common/icons/gear";
 import { Grid } from "@/components/common/icons/grid";
-import { Search } from "@/components/common/icons/search";
 import { Star } from "@/components/common/icons/star";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/common/sheet";
 import { Breakpoints } from "@/enums/breakpoints";
@@ -34,6 +43,36 @@ const SIDEBAR_LINKS = [
     name: "Settings",
     link: "/dashboard/settings",
     icon: <Gear className={"size-5"} />,
+  },
+  {
+    name: "Programs",
+    link: "/programs",
+    icon: <BookText className={"size-5"} />,
+  },
+  {
+    name: "Events",
+    link: "/events",
+    icon: <CalendarDays className={"size-5"} />,
+  },
+  {
+    name: "Become a creator",
+    link: "https://tally.so/r/nr9PE2",
+    icon: <BadgePlusIcon className={"size-5"} />,
+  },
+  {
+    name: "Jobs",
+    link: "/jobs",
+    icon: <Toolbox className={"size-5"} />,
+  },
+  {
+    name: "Blogs",
+    link: "/blogs",
+    icon: <SquarePen className={"size-5"} />,
+  },
+  {
+    name: "Podcasts",
+    link: "/podcasts",
+    icon: <Podcast className={"size-5"} />,
   },
 ];
 export const DashboardSidebar: FC = () => {
@@ -110,7 +149,7 @@ export const DashboardSidebar: FC = () => {
       ) : (
         <aside
           className={
-            " bg-black w-2/12 pl-7 py-7 rounded-2xl lg:flex flex-col justify-between h-screen"
+            " bg-black w-2/12 pl-7 py-7 rounded-2xl lg:flex flex-col justify-between h-max"
           }
         >
           <div className={"space-y-4"}>

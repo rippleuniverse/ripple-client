@@ -1,0 +1,2 @@
+1. Forgot password
+2. Dashbaord security settings

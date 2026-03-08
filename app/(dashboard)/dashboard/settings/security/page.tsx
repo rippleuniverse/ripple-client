@@ -14,13 +14,13 @@ export default function Page() {
     <>
       <Heading>Security</Heading>
       <div className="flex flex-col xl:flex-row gap-5">
-        <div className={"xl:w-7/12 space-y-8"}>
+        <div className={"w-full space-y-8"}>
           <ChangePassword />
-          <ActiveSessions />
+          {/*<ActiveSessions />*/}
         </div>
-        <div className={"xl:w-5/12 space-y-8"}>
-          <LoginHistory />
-        </div>
+        {/*<div className={"xl:w-5/12 space-y-8"}>*/}
+        {/*  <LoginHistory />*/}
+        {/*</div>*/}
       </div>
     </>
   );

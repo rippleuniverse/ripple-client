@@ -15,10 +15,6 @@ const SIDEBAR_LINKS = [
     link: "/dashboard/settings/account-details",
   },
   {
-    name: "Notifications",
-    link: "/dashboard/settings/notifications",
-  },
-  {
     name: "Security",
     link: "/dashboard/settings/security",
   },
