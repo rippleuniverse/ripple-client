@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -10,6 +12,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/common/carousel";
+import { useOverview as useBlogsOverview } from "@/hooks/blogs";
+import { useOverview as usePodcastsOverview } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const Blogs: FC = () => {
@@ -26,64 +30,52 @@ export const Blogs: FC = () => {
 };
 
 const BlogList: FC = () => {
+  const blogs = useBlogsOverview();
+  const podcasts = usePodcastsOverview();
+
   return (
     <>
       <div className="hidden md:grid grid-cols-4 gap-4 lg:w-9/12 h-max">
-        <Blog
-          image={"/images/home/blog-1.png"}
-          title={"Blog 1"}
-          type={"blog"}
-        />
-        <Blog
-          image={"/images/home/blog-2.png"}
-          title={"Blog 1"}
-          type={"podcast"}
-        />
-        <Blog
-          image={"/images/home/blog-3.png"}
-          title={"Blog 1"}
-          type={"podcast"}
-        />
-        <Blog
-          image={"/images/home/blog-4.png"}
-          title={"Blog 1"}
-          type={"blog"}
-        />
+        {blogs.data?.map((blog) => (
+          <Blog
+            key={blog.id}
+            image={blog.featured_image}
+            title={blog.title}
+            type={"blog"}
+          />
+        ))}
+        {podcasts.data?.map((podcast) => (
+          <Blog
+            key={podcast.id}
+            image={podcast.featured_image}
+            title={podcast.title}
+            type={"podcast"}
+          />
+        ))}
       </div>
       <div className={"block md:hidden max-w-56 mx-auto"}>
         <Carousel className={"w-full"}>
           <CarouselContent>
-            <CarouselItem>
-              <Blog
-                image={"/images/home/blog-4.png"}
-                title={"Blog 1"}
-                type={"blog"}
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <Blog
-                image={"/images/home/blog-2.png"}
-                title={"Blog 1"}
-                type={"podcast"}
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <Blog
-                image={"/images/home/blog-3.png"}
-                title={"Blog 1"}
-                type={"podcast"}
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <Blog
-                image={"/images/home/blog-4.png"}
-                title={"Blog 1"}
-                type={"podcast"}
-              />
-            </CarouselItem>
+            {blogs.data?.map((blog) => (
+              <CarouselItem key={blog.id}>
+                <Blog
+                  image={blog.featured_image}
+                  title={blog.title}
+                  type={"blog"}
+                />
+              </CarouselItem>
+            ))}
+            {podcasts.data?.map((podcast) => (
+              <CarouselItem key={podcast.id}>
+                <Blog
+                  image={podcast.featured_image}
+                  title={podcast.title}
+                  type={"podcast"}
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious className={"-left-6"} />
-
           <CarouselNext className={"-right-6"} />
         </Carousel>
       </div>

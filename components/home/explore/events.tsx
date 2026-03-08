@@ -1,3 +1,5 @@
+"use client";
+
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/common/carousel";
+import { useOverview } from "@/hooks/events";
 import { madeSoulmaze } from "@/lib/fonts";
 
 type EventProps = {
@@ -19,6 +22,8 @@ type EventProps = {
 };
 
 export const Events: FC = () => {
+  const events = useOverview();
+
   return (
     <div className={"bg-[#E9FFFF] rounded-xl p-8 w-full xl:w-9/12 space-y-6"}>
       <div className="flex flex-col gap-4 xl:flex-row xl:gap-32">
@@ -39,46 +44,27 @@ export const Events: FC = () => {
       </div>
 
       <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <Event
-          image={"/images/home/event-1.png"}
-          title={"Event Title here"}
-          date={"02/12/25"}
-        />
-        <Event
-          image={"/images/home/event-1.png"}
-          title={"Event Title here"}
-          date={"02/12/25"}
-        />
-        <Event
-          image={"/images/home/event-1.png"}
-          title={"Event Title here"}
-          date={"02/12/25"}
-        />
+        {events.data?.map((event) => (
+          <Event
+            key={event.id}
+            image={event.featured_image}
+            title={event.title}
+            date={event.date}
+          />
+        ))}
       </div>
       <div className={"block md:hidden"}>
         <Carousel className={"w-full"}>
           <CarouselContent>
-            <CarouselItem>
-              <Event
-                image={"/images/home/event-1.png"}
-                title={"Event Title here"}
-                date={"02/12/25"}
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <Event
-                image={"/images/home/event-1.png"}
-                title={"Event Title here"}
-                date={"02/12/25"}
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <Event
-                image={"/images/home/event-1.png"}
-                title={"Event Title here"}
-                date={"02/12/25"}
-              />
-            </CarouselItem>
+            {events.data?.map((event) => (
+              <CarouselItem key={event.id}>
+                <Event
+                  image={event.featured_image}
+                  title={event.title}
+                  date={event.date}
+                />
+              </CarouselItem>
+            ))}
           </CarouselContent>
           <CarouselPrevious className={"-left-5"} />
           <CarouselNext className={"-right-5"} />
@@ -92,7 +78,7 @@ export const Event: FC<EventProps> = ({ date, title, image }) => {
   return (
     <div className={"bg-[#BFF0F0] p-4 rounded-3xl space-y-3"}>
       <Image
-        className={"block object-cover w-full rounded-3xl"}
+        className={"block object-cover w-full rounded-3xl h-60"}
         src={image}
         alt={title}
         width={230}

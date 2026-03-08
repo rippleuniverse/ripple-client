@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "next/navigation";
+import { getOverviewEvents } from "@/helpers/events";
 import {
+  getOverviewPodcasts,
   getPodcast,
   getPodcastCategories,
   getPodcasts,
@@ -20,6 +22,12 @@ export function usePodcasts() {
   });
 }
 
+export function useOverview() {
+  return useQuery({
+    queryFn: getOverviewPodcasts,
+    queryKey: ["overview-podcasts"],
+  });
+}
 export function useRelatedPodcasts() {
   const { slug } = useParams();
   const fetcher = () => getRelatedPodcasts(slug as string);

@@ -42,6 +42,14 @@ export const getBlog = async (slug: string): Promise<BlogData> => {
   }).then((res) => res.data.data);
 };
 
+export const getOverviewBlogs = async (): Promise<BlogItem[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/blogs/overview",
+  }).then((res) => res.data.data);
+};
+
 export const getRelatedBlogs = async (slug: string): Promise<BlogItem[]> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({

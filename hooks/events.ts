@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "next/navigation";
-import { getEvent, getEvents } from "@/helpers/events";
+import { getEvent, getEvents, getOverviewEvents } from "@/helpers/events";
 
 export function useEvents() {
   const searchParams = useSearchParams();
@@ -13,6 +13,13 @@ export function useEvents() {
   return useQuery({
     queryFn: fetcher,
     queryKey: ["events", page, access, type, categoryId],
+  });
+}
+
+export function useOverview() {
+  return useQuery({
+    queryFn: getOverviewEvents,
+    queryKey: ["overview-events"],
   });
 }
 

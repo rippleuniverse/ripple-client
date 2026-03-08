@@ -38,6 +38,14 @@ export const getPodcast = async (id: string): Promise<Podcast> => {
   }).then((res) => res.data.data);
 };
 
+export const getOverviewPodcasts = async (): Promise<Podcast[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/podcasts/overview",
+  }).then((res) => res.data.data);
+};
+
 export const getRelatedPodcasts = async (id: string): Promise<Podcast[]> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({

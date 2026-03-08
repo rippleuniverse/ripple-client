@@ -69,6 +69,13 @@ export const getEvents = async (
   }).then((res) => res.data.data);
 };
 
+export const getOverviewEvents = async (): Promise<Event[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/events/overview",
+  }).then((res) => res.data.data);
+};
 export const getEvent = async (id: string | null): Promise<EventData> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({

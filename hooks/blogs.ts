@@ -4,8 +4,10 @@ import {
   getAllBlogCategories,
   getBlog,
   getBlogs,
+  getOverviewBlogs,
   getRelatedBlogs,
 } from "@/helpers/blogs";
+import { getOverviewEvents } from "@/helpers/events";
 
 export function useBlogs() {
   const searchParams = useSearchParams();
@@ -35,6 +37,13 @@ export function useBlog() {
     queryKey: ["blog", slug],
     queryFn: fetcher,
     enabled: !!slug,
+  });
+}
+
+export function useOverview() {
+  return useQuery({
+    queryFn: getOverviewBlogs,
+    queryKey: ["overview-blogs"],
   });
 }
 
