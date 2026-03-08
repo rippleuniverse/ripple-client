@@ -21,15 +21,21 @@ export const FooterLinks: FC = () => {
         <div className={"text-white"}>
           <h4 className={"text-sm md:text-base font-medium"}>Address:</h4>
           <p className={"text-xs md:text-base"}>
-            Lorem ipsum dolor sit amet consectetur. Sed non sit sed nunc nam
-            nunc tellus.{" "}
+            Lagos - 3rd Avenue Osapa London Garden’s Estate, Lekki, Lagos State,
+            Nigeria
+          </p>
+          <p className={"text-xs md:text-base"}>
+            London - 167-169 Great Portland Street, 5th Floor, London, United
+            Kingdom
           </p>
         </div>
         <div className={"text-white"}>
           <h4 className={"text-sm md:text-base font-medium"}>Contact:</h4>
-          <p className={"underline text-xs md:text-base"}>+1 703 4565 284</p>
+          <p className={"underline text-xs md:text-base"}>+44 7985 242146</p>
           <p className={"underline text-xs md:text-base"}>
-            <Link href={"mailto:hello@ripple.com"}>hello@ripple.com</Link>
+            <Link href={"mailto:contact@rippleuniverse.org"}>
+              contact@rippleuniverse.org
+            </Link>
           </p>
         </div>
       </div>

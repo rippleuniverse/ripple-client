@@ -18,7 +18,7 @@ export const NAV_LINKS: NavLink[] = [
     link: "/shop",
   },
   {
-    name: "Insights",
+    name: "Become a creator",
     link: "https://tally.so/r/nr9PE2",
     blank: true,
   },

@@ -32,16 +32,24 @@ export const Testimonials: FC = () => {
         direction="left"
       >
         <div className="flex gap-4">
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
-          <Testimonial />
+          <Testimonial
+            name={"Dr Amanda K."}
+            testimonial={
+              "Ripple guided me during what I thought was my transition into the tech industry, but ended up being transferring my already existing skills and making personalized for my niche in design"
+            }
+          />
+          <Testimonial
+            name={"Victor A."}
+            testimonial={
+              "I passed my first tech job interview. Honestly Ripple, thank you so much for the creative space, and all the support and mentorship. You’ve really created a safe space honestly."
+            }
+          />
+          <Testimonial
+            name={"Joyce A."}
+            testimonial={
+              "Working with Ripple Universe gave me the chance to be involved in real digital operations and learn hands-on. It opened doors for me professionally and helped me secure a role where I could apply the skills I gained. I’m grateful for the experience and growth it provided. "
+            }
+          />
         </div>
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/*@ts-expect-error*/}
@@ -50,24 +58,26 @@ export const Testimonials: FC = () => {
   );
 };
 
-const Testimonial: FC = () => {
+type TestimonialProps = {
+  name: string;
+  testimonial: string;
+};
+
+const Testimonial: FC<TestimonialProps> = ({ testimonial, name }) => {
   return (
     <div
-      className={`bg-white px-5 py-6 rounded-3xl w-[20rem] space-y-4 ${aeonik.className}`}
+      className={`bg-white px-5 py-6 rounded-3xl h-50 w-[20rem] space-y-4 ${aeonik.className}`}
     >
-      <p className={"text-wrap"}>
-        Lorem ipsum dolor sit amet consectetur. Sed non sit sed nunc nam nunc
-        tellus. Sed non sit sed nunc nam nunc tellus.
-      </p>
+      <p className={"text-wrap text-sm h-10/12"}>{testimonial}</p>
       <div className="flex items-center gap-3">
         <Image
           src={"/images/programs/testimonial.png"}
-          alt={"Testimonial"}
+          alt={name}
           width={25}
           height={25}
           className={"size-6"}
         />
-        <h5 className={`${aeonik.className} font-bold`}>Milli Chapo</h5>
+        <h5 className={`${aeonik.className} font-bold`}>{name}</h5>
       </div>
     </div>
   );
