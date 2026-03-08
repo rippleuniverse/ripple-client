@@ -35,5 +35,10 @@ export const EventCheckoutSchema = z.object({
   tickets: z.array(TicketSchema).min(1, "At least one ticket is required"),
 });
 
+export const ProgramCheckoutSchema = z.object({
+  couponCode: z.string().nullable().optional(),
+});
+
 export type ShopCheckoutSchemaType = z.infer<typeof ShopCheckoutSchema>;
 export type EventCheckoutSchemaType = z.infer<typeof EventCheckoutSchema>;
+export type ProgramCheckoutSchemaType = z.infer<typeof ProgramCheckoutSchema>;

@@ -6,7 +6,9 @@ import Link from "next/link";
 import { FC } from "react";
 import { Pagination } from "@/components/common/pagination";
 import { Program as ProgramType } from "@/helpers/programs";
+import { usePrice } from "@/hooks/common/currency";
 import { usePrograms } from "@/hooks/programs";
+import { currencyFormatter } from "@/lib/utils";
 
 export const SkillList: FC = () => {
   const programs = usePrograms();
@@ -17,7 +19,7 @@ export const SkillList: FC = () => {
     >
       <div className="px-3 py-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 rounded-3xl">
         {programs.data?.data.map((program) => (
-          <Program program={program} />
+          <Program key={program.id} program={program} />
         ))}
       </div>
       {programs.data && <Pagination {...programs.data.meta} />}
@@ -26,6 +28,8 @@ export const SkillList: FC = () => {
 };
 
 export const Program: FC<{ program: ProgramType }> = ({ program }) => {
+  const price = usePrice(program.price);
+
   return (
     <div className={"bg-white p-4 rounded-3xl space-y-3"}>
       <Link href={`/programs/${program.id}`} className={"block"}>
@@ -67,9 +71,11 @@ export const Program: FC<{ program: ProgramType }> = ({ program }) => {
           {program.rating.avg_rating}
         </span>
       </div>
-      <h2 className={"text-black font-bold text-xl md:text-2xl"}>
-        {program.price}
-      </h2>
+      {price && (
+        <h2 className={"text-black font-bold text-xl md:text-2xl"}>
+          {currencyFormatter(price.currency, price.amount)}
+        </h2>
+      )}
     </div>
   );
 };

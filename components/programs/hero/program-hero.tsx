@@ -45,10 +45,7 @@ export const ProgramHero: FC = () => {
             <h1
               className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
             >
-              name of <span className={"text-[#FFF8C7]"}>skills</span>
-              <br />
-              <span className={"text-[#FFF8C7]"}>program</span>{" "}
-              <span className={"text-[#FF78E6]"}>here</span>
+              {program.data?.name}
             </h1>
             <p
               className={
@@ -69,7 +66,9 @@ export const ProgramHero: FC = () => {
             </p>
             <div className={"flex justify-center lg:justify-start"}>
               <Button asChild size={"lg"} variant={"secondary"}>
-                <Link href={"#courses"}>Enroll for this course</Link>
+                <Link href={`/programs/${program.data?.id}/checkout`}>
+                  Enroll for this course
+                </Link>
               </Button>
             </div>
           </div>

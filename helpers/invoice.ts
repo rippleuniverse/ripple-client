@@ -54,6 +54,49 @@ export const getPurchasedItems = async (
   }).then((res) => res.data.data);
 };
 
+export const downloadProgramFile = async (id: string) => {
+  const { AppAxios } = axiosInstance();
+  const data = await AppAxios({
+    url: `invoice/purchases/${id}/download-program`,
+    method: "GET",
+    responseType: "blob",
+  }).then((res) => res.data);
+  const url = URL.createObjectURL(data);
+  const a = document.createElement("a");
+  a.href = url;
+  const date = Date.now();
+  const contentDisposition = await AppAxios({
+    url: `invoice/purchases/${id}/download-program`,
+    method: "GET",
+    responseType: "blob",
+  }).then((res) => res.headers["content-disposition"]);
+
+  let filename = `program-${date}`;
+  if (contentDisposition) {
+    const filenameMatch = contentDisposition.match(
+      /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+    );
+    if (filenameMatch && filenameMatch[1]) {
+      filename = filenameMatch[1].replace(/['"]/g, "");
+    }
+  } else {
+    // Fallback: try to determine extension from blob type
+    const extension = data.type.split("/")[1] || "pdf";
+    filename = `${filename}.${extension}`;
+  }
+  if (contentDisposition) {
+    const filenameMatch = contentDisposition.match(
+      /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/,
+    );
+    if (filenameMatch && filenameMatch[1]) {
+      filename = filenameMatch[1].replace(/['"]/g, "");
+    }
+  }
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 export const getPurchasedItem = async (id: string): Promise<PurchaseItem> => {
   const { AppAxios } = axiosInstance();
   return AppAxios({

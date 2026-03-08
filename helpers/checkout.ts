@@ -1,6 +1,7 @@
 import { axiosInstance } from "@/lib/utils";
 import {
   EventCheckoutSchemaType,
+  ProgramCheckoutSchemaType,
   ShopCheckoutSchemaType,
 } from "@/schema/checkout";
 import { Currency } from "@/types/common";
@@ -35,6 +36,25 @@ export const shopCheckout = async (
       ],
       save_billing_information: data.saveBillingInfo,
       coupon_code: data.couponCode,
+    },
+  }).then((res) => res.data.data.payment_url);
+};
+
+export const programCheckout = async (
+  data: ProgramCheckoutSchemaType & {
+    currency: Currency;
+    programId: string;
+  },
+): Promise<string> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    method: "POST",
+    url: "/checkout/program",
+    data: {
+      currency: data.currency,
+      coupon_code: data.couponCode,
+      program_id: data.programId,
     },
   }).then((res) => res.data.data.payment_url);
 };

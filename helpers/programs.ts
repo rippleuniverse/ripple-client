@@ -1,3 +1,4 @@
+import { Price } from "@/helpers/shop";
 import { axiosInstance } from "@/lib/utils";
 import { Paginated } from "@/types/common";
 
@@ -18,7 +19,7 @@ export type Program = {
     name: string;
     slug: string;
   };
-  price: string;
+  price: Price[];
   rating: {
     avg_rating: number;
     count: number;
@@ -52,7 +53,7 @@ export type ProgramData = {
   };
   experience_level: ExperienceLevel;
   formatted_price: string;
-  price: number;
+  price: Price[];
   featured_image: string;
   created_at: string;
 };
@@ -78,12 +79,13 @@ export const getProgramsCategories = async (): Promise<Category[]> => {
 export const getPrograms = async (
   page: string | null,
   search: string | null,
+  categoryId: string | null,
 ): Promise<Paginated<Program[]>> => {
   const { AppAxios } = axiosInstance();
 
   return AppAxios({
     url: "/programs",
-    params: { page, search },
+    params: { page, search, category_id: categoryId },
   }).then((res) => res.data.data);
 };
 

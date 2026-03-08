@@ -1,16 +1,26 @@
 "use client";
 
+import { useMutation } from "@tanstack/react-query";
 import { ChevronRight, Download, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FC, PropsWithChildren } from "react";
+import { toast } from "react-hot-toast";
 import { Button } from "@/components/common/button";
-import { PurchaseItem } from "@/helpers/invoice";
+import { downloadProgramFile, PurchaseItem } from "@/helpers/invoice";
 import { usePurchasedItems } from "@/hooks/invoice";
 import { madeSoulmaze } from "@/lib/fonts";
+import { errorParser } from "@/lib/utils";
 
 export const Items: FC = () => {
   const items = usePurchasedItems();
+  const { mutate, isPending } = useMutation({
+    mutationFn: downloadProgramFile,
+    onSuccess() {},
+    onError(err) {
+      toast.error(errorParser(err));
+    },
+  });
 
   return (
     <div className={"space-y-2"}>
@@ -32,6 +42,19 @@ export const Items: FC = () => {
                 </Link>
               </Button>
             </>
+          )}
+          {item.product_type === "program" && (
+            <Button
+              className={"border-gray-200"}
+              onClick={() => mutate(item.id)}
+              size={"lg"}
+              variant={"outline"}
+              disabled={isPending}
+            >
+              <span>
+                <Download />
+              </span>
+            </Button>
           )}
           {/*<Button*/}
           {/*  size={"lg"}*/}

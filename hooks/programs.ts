@@ -4,17 +4,26 @@ import {
   getProgram,
   getProgramReviews,
   getPrograms,
+  getProgramsCategories,
   getRelatedPrograms,
 } from "@/helpers/programs";
+
+export function useProgramCategories() {
+  return useQuery({
+    queryKey: ["program-categories"],
+    queryFn: getProgramsCategories,
+  });
+}
 
 export function usePrograms() {
   const searchParams = useSearchParams();
   const page = searchParams.get("page");
+  const category = searchParams.get("category");
   const search = searchParams.get("search");
-  const fetcher = () => getPrograms(page, search);
+  const fetcher = () => getPrograms(page, search, category);
 
   return useQuery({
-    queryKey: ["programs", page, search],
+    queryKey: ["programs", page, search, category],
     queryFn: fetcher,
   });
 }

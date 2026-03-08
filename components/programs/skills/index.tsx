@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
@@ -11,7 +13,10 @@ import { Security } from "@/components/common/icons/security";
 import { Stars } from "@/components/common/icons/stars";
 import { Search } from "@/components/common/search";
 import { SkillList } from "@/components/programs/skills/skill-list";
+import { useFilter } from "@/hooks/common/filter";
+import { useProgramCategories } from "@/hooks/programs";
 import { creatoDisplay, madeSoulmaze } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 export const Skills: FC = () => {
   return (
@@ -38,6 +43,9 @@ export const Skills: FC = () => {
 };
 
 export const Categories: FC = () => {
+  const categories = useProgramCategories();
+  const { filterValue, handleFilter, filter } = useFilter("category");
+
   return (
     <div className={"space-y-4"}>
       <h3
@@ -50,34 +58,31 @@ export const Categories: FC = () => {
           "flex justify-center md:items-center gap-2 md:gap-3 flex-wrap"
         }
       >
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Grid />
-          <span>Category</span>
+        <Button
+          onClick={() => handleFilter("")}
+          className={cn(
+            "text-xs md:text-sm",
+            !filter ? "bg-black text-white" : "bg-[#F5F5F5] text-black",
+          )}
+          variant={"ghost"}
+        >
+          <span>All</span>
         </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Stars />
-          <span>Artificial Inteligence</span>
-        </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Particles />
-          <span>Information Technology</span>
-        </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Connect />
-          <span>Personal Development</span>
-        </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <BulbMoney />
-          <span>Business</span>
-        </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Security />
-          <span>Security</span>
-        </Button>
-        <Button className={"bg-[#F5F5F5] text-xs md:text-sm"} variant={"ghost"}>
-          <Laptop />
-          <span>Computer science</span>
-        </Button>
+        {categories.data?.map((category) => (
+          <Button
+            onClick={() => handleFilter(category.id)}
+            key={category.id}
+            className={cn(
+              "text-xs md:text-sm",
+              category.id === filterValue
+                ? "bg-black text-white"
+                : "bg-[#F5F5F5] text-black",
+            )}
+            variant={"ghost"}
+          >
+            <span>{category.name}</span>
+          </Button>
+        ))}
       </div>
     </div>
   );

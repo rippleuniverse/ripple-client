@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import { HeadSection } from "@/components/home/head-section";
-import { CourseContent } from "@/components/programs/course-content";
 import { CourseReviews } from "@/components/programs/course-reviews";
 import { ProgramHero } from "@/components/programs/hero/program-hero";
 import { LearnSkills } from "@/components/programs/learn-skills";
@@ -20,7 +19,6 @@ export default function Page() {
       <div className={"bg-[#FFFFE9] py-12"}>
         <LearnSkills />
       </div>
-      <CourseContent />
       <CourseReviews />
       <OtherCourses />
     </>
