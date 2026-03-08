@@ -37,7 +37,7 @@ export const ConfirmEmail: FC = () => {
     async onSuccess() {
       toast.success("Email verified successfully. You will be redirected soon");
       await user.refetch();
-      router.push("/");
+      router.push("/dashboard");
     },
     onError(err) {
       toast.error(errorParser(err));

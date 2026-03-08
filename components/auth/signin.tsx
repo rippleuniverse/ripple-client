@@ -33,7 +33,7 @@ export const Signin: FC = () => {
         window.location.href = "/confirm-email";
         return;
       }
-      window.location.href = "/";
+      window.location.href = "/dashboard";
     },
     onError(err) {
       toast.error(errorParser(err));
