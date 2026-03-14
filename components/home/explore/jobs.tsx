@@ -1,12 +1,15 @@
-import { ArrowRight, Dot } from "lucide-react";
+"use client";
+
 import Link from "next/link";
-import { ComponentProps, FC } from "react";
+import { FC } from "react";
 import { Button } from "@/components/common/button";
-import { OpenRole } from "@/helpers/roles";
+import { Job } from "@/components/jobs/roles";
+import { useHomeRolesOverview } from "@/hooks/roles";
 import { madeSoulmaze, manRope } from "@/lib/fonts";
-import { cn } from "@/lib/utils";
 
 export const Jobs: FC = () => {
+  const roles = useHomeRolesOverview();
+
   return (
     <div className={"bg-[#E9FFEC] rounded-xl p-8 w-full xl:w-9/12 space-y-4"}>
       <div className="flex justify-between">
@@ -25,12 +28,9 @@ export const Jobs: FC = () => {
       </p>
 
       <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}>
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
-        {/*<Job title={"Senior Software Developer"} location={"Google"} />*/}
+        {roles.data?.map((role) => (
+          <Job role={role} key={role.id} />
+        ))}
       </div>
     </div>
   );

@@ -23,6 +23,14 @@ export type OpenRole = {
   created_at: string;
 };
 
+export const getHomeOverviewRoles = async (): Promise<OpenRole[]> => {
+  const { AppAxios } = axiosInstance();
+
+  return AppAxios({
+    url: "/roles/overview/home",
+  }).then((res) => res.data.data);
+};
+
 export const getOpenRoles = async (
   page: string | null,
   search: string | null,

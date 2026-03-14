@@ -24,7 +24,7 @@ export const RippleShop: FC<{ className?: string }> = ({ className }) => {
         </p>
         <div>
           <Button variant={"outline"} asChild>
-            <Link href={"/"}>Explore all resources</Link>
+            <Link href={"/shop"}>Explore all resources</Link>
           </Button>
         </div>
       </div>
