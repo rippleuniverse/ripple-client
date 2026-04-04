@@ -18,11 +18,11 @@ export const FooterLinks: FC = () => {
         ))}
       </ul>
       <div className={"space-y-6"}>
-        <div className={"text-white"}>
+        <div className={"text-white space-y-3"}>
           <h4 className={"text-sm md:text-base font-medium"}>Address:</h4>
           <p className={"text-xs md:text-base"}>
-            Lagos - 3rd Avenue Osapa London Garden’s Estate, Lekki, Lagos State,
-            Nigeria
+            Lagos - 3rd Avenue Osapa London Garden&apos;s Estate, Lekki, Lagos
+            State, Nigeria
           </p>
           <p className={"text-xs md:text-base"}>
             London - 167-169 Great Portland Street, 5th Floor, London, United

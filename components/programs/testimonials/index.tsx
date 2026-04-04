@@ -34,21 +34,24 @@ export const Testimonials: FC = () => {
       >
         <div className="flex gap-4">
           <Testimonial
+            className="bg-gray-50"
             name={"Dr Amanda K."}
             testimonial={
               "Ripple guided me during what I thought was my transition into the tech industry, but ended up being transferring my already existing skills and making personalized for my niche in design"
             }
           />
           <Testimonial
+            className="bg-gray-50"
             name={"Victor A."}
             testimonial={
-              "I passed my first tech job interview. Honestly Ripple, thank you so much for the creative space, and all the support and mentorship. You’ve really created a safe space honestly."
+              "I passed my first tech job interview. Honestly Ripple, thank you so much for the creative space, and all the support and mentorship. You've really created a safe space honestly."
             }
           />
           <Testimonial
+            className="bg-gray-50"
             name={"Joyce A."}
             testimonial={
-              "Working with Ripple Universe gave me the chance to be involved in real digital operations and learn hands-on. It opened doors for me professionally and helped me secure a role where I could apply the skills I gained. I’m grateful for the experience and growth it provided. "
+              "Working with Ripple Universe gave me the chance to be involved in real digital operations and learn hands-on. It opened doors for me professionally and helped me secure a role where I could apply the skills I gained. I'm grateful for the experience and growth it provided."
             }
           />
         </div>
