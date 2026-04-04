@@ -1,6 +1,6 @@
 // This function can be marked `async` if using `await` inside
 import { NextRequest, NextResponse } from "next/server";
-import { checkSiteUnlocked, getUser } from "./helpers/auth";
+import { checkSiteUnlocked } from "./helpers/auth";
 
 export async function proxy(request: NextRequest) {
   try {
