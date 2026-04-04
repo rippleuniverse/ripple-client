@@ -6,6 +6,10 @@ export type NavLink = {
 
 export const NAV_LINKS: NavLink[] = [
   {
+    name: "About",
+    link: "/about",
+  },
+  {
     name: "Programs",
     link: "/programs",
   },

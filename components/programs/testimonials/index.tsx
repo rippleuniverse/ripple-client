@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 import { Container } from "@/components/common/container";
 import { aeonik, madeSoulmaze } from "@/lib/fonts";
+import { cn } from "@/lib/utils";
 
 export const Testimonials: FC = () => {
   return (
@@ -61,13 +62,21 @@ export const Testimonials: FC = () => {
 type TestimonialProps = {
   name: string;
   testimonial: string;
+  className?: string;
 };
 
-const Testimonial: FC<TestimonialProps> = ({ testimonial, name }) => {
+export const Testimonial: FC<TestimonialProps> = ({
+  testimonial,
+  name,
+  className,
+}) => {
+  const c = cn(
+    `bg-white px-5 py-8 rounded-3xl h-54 w-[20rem] space-y-4 ${aeonik.className}`,
+    className,
+  );
+
   return (
-    <div
-      className={`bg-white px-5 py-6 rounded-3xl h-50 w-[20rem] space-y-4 ${aeonik.className}`}
-    >
+    <div className={c}>
       <p className={"text-wrap text-sm h-10/12"}>{testimonial}</p>
       <div className="flex items-center gap-3">
         <Image
