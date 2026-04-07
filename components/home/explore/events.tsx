@@ -19,6 +19,7 @@ type EventProps = {
   image: string;
   title: string;
   date: string;
+  id: string;
 };
 
 export const Events: FC = () => {
@@ -46,6 +47,7 @@ export const Events: FC = () => {
       <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {events.data?.map((event) => (
           <Event
+            id={event.id}
             key={event.id}
             image={event.featured_image}
             title={event.title}
@@ -59,6 +61,7 @@ export const Events: FC = () => {
             {events.data?.map((event) => (
               <CarouselItem key={event.id}>
                 <Event
+                  id={event.id}
                   image={event.featured_image}
                   title={event.title}
                   date={event.date}
@@ -74,23 +77,29 @@ export const Events: FC = () => {
   );
 };
 
-export const Event: FC<EventProps> = ({ date, title, image }) => {
+export const Event: FC<EventProps> = ({ date, title, image, id }) => {
   return (
     <div className={"bg-[#BFF0F0] p-4 rounded-3xl space-y-3"}>
-      <Image
-        className={"block object-cover w-full rounded-3xl h-60"}
-        src={image}
-        alt={title}
-        width={230}
-        height={330}
-      />
+      <Link href={`/events/${id}`} className={"block"}>
+        <Image
+          className={"block object-cover w-full rounded-3xl h-60"}
+          src={image}
+          alt={title}
+          width={230}
+          height={330}
+        />
+      </Link>
       <div className="flex items-center justify-between">
         <div className={"text-[#4E4E4E]"}>
-          <h3 className={"font-bold text-sm md:text-base"}>{title}</h3>
+          <h3 className={"font-bold text-sm md:text-base"}>
+            <Link href={`/events/${id}`}>{title}</Link>
+          </h3>
           <p>{date}</p>
         </div>
         <div>
-          <ChevronRight />
+          <Link href={`/events/${id}`}>
+            <ChevronRight />
+          </Link>
         </div>
       </div>
     </div>
