@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { FC } from "react";
 import { Button } from "@/components/common/button";
 import { madeSoulmaze } from "@/lib/fonts";
@@ -28,15 +29,18 @@ export const Techlab: FC = () => {
           the Future
         </h2>
         <div className="flex gap-4 flex-col md:flex-row p-3">
-          <Button size={"lg"} variant={"secondary"}>
-            Join the community
+          <Button size={"lg"} variant={"secondary"} asChild>
+            <Link href={"/signup"}>Join the community</Link>
           </Button>
           <Button
             size={"lg"}
             className={"text-white border-white"}
             variant={"outline"}
+            asChild
           >
-            Partner with Ripple
+            <Link href={"mailto:info@rippleuniverse.org"} target={"_blank"}>
+              Partner with Ripple
+            </Link>
           </Button>
         </div>
       </div>

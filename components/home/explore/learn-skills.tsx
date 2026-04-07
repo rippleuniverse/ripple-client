@@ -31,7 +31,7 @@ export const LearnSkills: FC<{ className?: string }> = ({ className }) => {
         </p>
         <div>
           <Button variant={"outline"} asChild>
-            <Link href={"/"}>Explore all programs</Link>
+            <Link href={"/programs"}>Explore all programs</Link>
           </Button>
         </div>
       </div>

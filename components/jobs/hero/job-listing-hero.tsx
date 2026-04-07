@@ -95,7 +95,9 @@ export const JobListingHero: FC = () => {
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Job type:</span>{" "}
-                  <span className={"font-medium"}>{role.data?.type}</span>
+                  <span className={"font-medium capitalize"}>
+                    {role.data?.type.replaceAll("_", " ")}
+                  </span>
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Salary:</span>{" "}
@@ -109,7 +111,9 @@ export const JobListingHero: FC = () => {
                 </li>
                 <li className={"text-sm md:text-base"}>
                   <span className={"text-[#484848]"}>Job style:</span>{" "}
-                  <span className={"font-medium"}>{role.data?.style}</span>
+                  <span className={"font-medium capitalize"}>
+                    {role.data?.style.replaceAll("_", " ")}
+                  </span>
                 </li>
               </ul>
             </div>

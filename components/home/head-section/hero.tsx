@@ -26,7 +26,7 @@ export const Hero: FC = () => {
         </p>
         <div className={"flex justify-center"}>
           <Button asChild variant={"secondary"} size={"lg"}>
-            <Link href={"/"}>Join the Community</Link>
+            <Link href={"/signup"}>Join the Community</Link>
           </Button>
         </div>
         <div className={""}>

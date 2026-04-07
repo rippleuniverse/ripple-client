@@ -121,9 +121,14 @@ const BlogInfo: FC = () => {
       <p className={"text-sm md:text-base leading-6"}>
         Stories, Ideas & Conversations from Creative Tech.
       </p>
-      <Button asChild variant={"outline"} size={"lg"}>
-        <Link href={"/"}>Explore all</Link>
-      </Button>
+      <div className="flex flex-col md:flex-row gap-3">
+        <Button asChild variant={"outline"} size={"lg"}>
+          <Link href={"/blogs"}>Explore blogs</Link>
+        </Button>
+        <Button asChild variant={"outline"} size={"lg"}>
+          <Link href={"/podcasts"}>Explore podcasts</Link>
+        </Button>
+      </div>
     </div>
   );
 };

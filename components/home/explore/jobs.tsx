@@ -19,7 +19,7 @@ export const Jobs: FC = () => {
           Ripple <br /> <span className="text-secondary">jobs</span>
         </h2>
         <Button variant={"outline"} asChild>
-          <Link href={"/"}>Explore all Jobs</Link>
+          <Link href={"/jobs"}>Explore all Jobs</Link>
         </Button>
       </div>
       <p className={"text-sm md:text-base max-w-sm"}>

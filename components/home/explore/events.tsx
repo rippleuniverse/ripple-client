@@ -39,7 +39,7 @@ export const Events: FC = () => {
       </div>
       <div>
         <Button variant={"outline"} asChild size={"lg"}>
-          <Link href={"/"}>Explore all events</Link>
+          <Link href={"/events"}>Explore all events</Link>
         </Button>
       </div>
 
