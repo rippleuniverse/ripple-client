@@ -14,11 +14,13 @@ import { Event } from "@/components/home/explore/events";
 import { LearnSkills } from "@/components/home/explore/learn-skills";
 import { RippleShop } from "@/components/home/explore/ripple-shop";
 import { Job } from "@/components/jobs/roles";
+import { useOverview } from "@/hooks/events";
 import { useRolesOverview } from "@/hooks/roles";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const OtherItems: FC = () => {
   const roles = useRolesOverview();
+  const events = useOverview();
 
   return (
     <Carousel className={"w-full"}>
@@ -48,27 +50,19 @@ export const OtherItems: FC = () => {
 
             <Carousel>
               <CarouselContent>
-                <CarouselItem className={"basis-10/12 md:basis-7/12"}>
-                  <Event
-                    image={"/images/home/event-1.png"}
-                    title={"Event Title here"}
-                    date={"02/12/25"}
-                  />
-                </CarouselItem>
-                <CarouselItem className={"basis-10/12 md:basis-7/12"}>
-                  <Event
-                    image={"/images/home/event-1.png"}
-                    title={"Event Title here"}
-                    date={"02/12/25"}
-                  />
-                </CarouselItem>
-                <CarouselItem className={"basis-10/12 md:basis-7/12"}>
-                  <Event
-                    image={"/images/home/event-1.png"}
-                    title={"Event Title here"}
-                    date={"02/12/25"}
-                  />
-                </CarouselItem>
+                {events.data?.map((event) => (
+                  <CarouselItem
+                    key={event.id}
+                    className={"basis-10/12 md:basis-7/12"}
+                  >
+                    <Event
+                      image={event.featured_image}
+                      title={event.title}
+                      date={event.date}
+                      id={event.id}
+                    />
+                  </CarouselItem>
+                ))}
               </CarouselContent>
             </Carousel>
           </div>
