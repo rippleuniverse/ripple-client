@@ -44,15 +44,16 @@ export const NavLinksSM: FC = () => {
         <SheetContent>
           <SheetHeader></SheetHeader>
           <div className={"space-y-5 p-8"}>
-            <ul className={"space-y-4"}>
+            <ul className={"space-y-8"}>
               {NAV_LINKS.map((link, index) => (
                 <li key={index}>
                   <Link
                     target={link.blank ? "_blank" : ""}
                     href={link.link}
-                    className={"w-full block text-lg"}
+                    className={"w-full flex items-center gap-3 text-lg"}
                   >
-                    {link.name}
+                    {link.icon}
+                    <span>{link.name}</span>
                   </Link>
                 </li>
               ))}
