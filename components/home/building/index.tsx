@@ -15,11 +15,12 @@ export const Building: FC = () => {
         </h1>
         <p
           className={
-            "text-[#4E4E4E] text-xs md:text-sm lg:text-base text-center mx-auto max-w-md"
+            "text-[#4E4E4E] text-xs md:text-sm lg:text-base text-center mx-auto max-w-xl"
           }
         >
-          Structured programs, courses, and labs designed to help you break into
-          creative AI and tech.
+          Our community has exclusive access to the lab: immersive experiences,
+          learning programs, and digital products designed to help you become a
+          creative or techie.
         </p>
         <BuildingItems />
       </Container>

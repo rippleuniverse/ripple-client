@@ -11,19 +11,21 @@ export const BuildingItems: FC = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
       <BuildingItem title={"LEARN"} image={"/images/home/building-1.png"}>
-        Structured programs, courses, and labs designed to help you break into
-        creative AI and tech.
+        In our community, you’ll find structured programs, courses, and labs to
+        help you get started in creative AI and tech, so you can scale from
+        learning to earning.
       </BuildingItem>
       <BuildingItem title={"Experience"} image={"/images/home/building-2.png"}>
-        Events, galleries, masterclasses, and immersive experiences that connect
-        learning with culture.
+        Take part in events, galleries, masterclasses, and hands-on experiences
+        that bring learning and culture together, making every moment memorable.
       </BuildingItem>{" "}
       <BuildingItem title={"Create"} image={"/images/home/building-3.png"}>
-        A space to build, experiment, showcase work, and collaborate with others
-        across the world.
+        Build, experiment, show your work, and team up with people from around
+        the world, giving you the freedom to create.
       </BuildingItem>{" "}
       <BuildingItem title={"Connect"} image={"/images/home/building-4.png"}>
-        A growing community of creatives, technologists, leaders, and partners.
+        Join a growing network of creatives, technologists, leaders, and
+        partners, so you always have new connections.
       </BuildingItem>
     </div>
   );

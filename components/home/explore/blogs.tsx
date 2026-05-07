@@ -119,14 +119,15 @@ const BlogInfo: FC = () => {
         blog & <br /> <span className="text-secondary">podcasts</span>
       </h2>
       <p className={"text-sm md:text-base leading-6"}>
-        Stories, Ideas & Conversations from Creative Tech.
+        Spotlighting untold and unheard Stories, Ideas & Conversations from
+        Creative Techies.
       </p>
       <div className="flex flex-col md:flex-row gap-3">
         <Button asChild variant={"outline"} size={"lg"}>
-          <Link href={"/blogs"}>Explore blogs</Link>
+          <Link href={"/blogs"}>Explore our latest episodes</Link>
         </Button>
         <Button asChild variant={"outline"} size={"lg"}>
-          <Link href={"/podcasts"}>Explore podcasts</Link>
+          <Link href={"/podcasts"}>Explore Ripple Pods</Link>
         </Button>
       </div>
     </div>

@@ -26,7 +26,7 @@ export const Hero: FC = () => {
           <h1
             className={`text-center lg:text-left text-white ${madeSoulmaze.className} text-2xl md:text-4xl lg:text-4xl xl:text-[3.43rem] leading-7 md:leading-10 lg:leading-12`}
           >
-            Learn the <br /> <span className={"text-[#FFF8C7]"}>skills</span>{" "}
+            Build the <br /> <span className={"text-[#FFF8C7]"}>skills</span>{" "}
             <br />
             <span className={"text-[#FFF8C7]"}>shaping</span> <br />
             <span className={"text-[#FF78E6]"}>the future</span>
@@ -36,8 +36,8 @@ export const Hero: FC = () => {
               "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
             }
           >
-            From beginner-friendly pathways to advanced creative tech labs,
-            Ripple offers programs designed for real-world impact.
+            From creative AI fundamentals to advanced tech mastery, Ripple
+            offers programs designed for real-world creative careers.
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>

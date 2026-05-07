@@ -44,6 +44,7 @@ export const Skills: FC = () => {
 
 export const Categories: FC = () => {
   const categories = useProgramCategories();
+  // TODO: Filter is broken, fix
   const { filterValue, handleFilter, filter } = useFilter("category");
 
   return (

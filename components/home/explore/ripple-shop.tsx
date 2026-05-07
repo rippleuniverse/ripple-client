@@ -20,7 +20,8 @@ export const RippleShop: FC<{ className?: string }> = ({ className }) => {
           Ripple <br /> <span className="text-secondary">shop</span>
         </h2>
         <p className={"text-sm md:text-base"}>
-          Purchase digital products, and resource created and curated by Ripple.
+          Ripple offers digital products and resources created, curated, or
+          selected to accelerate your creative tech journey.
         </p>
         <div>
           <Button variant={"outline"} asChild>
@@ -42,7 +43,7 @@ export const RippleShop: FC<{ className?: string }> = ({ className }) => {
             <Shirt className={"size-8 stroke-1"} />
           </p>
           <p className={"font-semibold text-xs lg:text-sm xl:text-base"}>
-            Merch
+            Ripple Merch
           </p>
         </div>
         <div className="bg-white p-3 text-center rounded-2xl col-span-12">

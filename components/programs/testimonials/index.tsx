@@ -54,6 +54,13 @@ export const Testimonials: FC = () => {
               "Working with Ripple Universe gave me the chance to be involved in real digital operations and learn hands-on. It opened doors for me professionally and helped me secure a role where I could apply the skills I gained. I'm grateful for the experience and growth it provided."
             }
           />
+          <Testimonial
+            className="bg-gray-50"
+            name={"Henry E."}
+            testimonial={
+              "The design challenge has challenged me to work on my first case study. Thanks, Ripple Universe, for nudging me into working on my first case study, like seriously thank you"
+            }
+          />
         </div>
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/*@ts-expect-error*/}

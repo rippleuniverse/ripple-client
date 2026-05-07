@@ -32,8 +32,7 @@ export const Explore: FC = () => {
         <h1
           className={`text-white text-center ${madeSoulmaze.className} text-xl md:text-2xl lg:text-3xl xl:text-4xl uppercase`}
         >
-          Explore the <br /> world of{" "}
-          <span className={"text-yellow-300"}>ripple</span>
+          Cosmos of <br /> <span className={"text-yellow-300"}>ripple</span>
         </h1>
       </>
       <div className="flex flex-col xl:flex-row gap-4">

@@ -1,4 +1,5 @@
 import {
+  Bot,
   ChartNoAxesCombined,
   Database,
   Proportions,
@@ -22,12 +23,12 @@ export const LearnSkills: FC<{ className?: string }> = ({ className }) => {
         <h2
           className={`${madeSoulmaze.className} text-lg md:text-xl lg:text-2xl xl:text-[1.5rem] uppercase`}
         >
-          Learn the <br /> Skills shaping the <br />{" "}
+          Build the <br /> Skills shaping the <br />{" "}
           <span className="text-secondary">future</span>
         </h2>
         <p className={"text-sm md:text-base"}>
-          From beginner-friendly pathways to advanced creative tech labs, Ripple
-          offers programs designed for real-world impact.
+          From creative AI fundamentals to advanced tech mastery, Ripple offers
+          programs designed for real-world creative careers.
         </p>
         <div>
           <Button variant={"outline"} asChild>
@@ -56,6 +57,14 @@ export const LearnSkills: FC<{ className?: string }> = ({ className }) => {
           </p>
           <p className={"font-semibold text-xs lg:text-sm xl:text-sm"}>
             Data Science
+          </p>
+        </div>
+        <div className="bg-white p-3 text-center rounded-2xl">
+          <p className={"flex justify-center"}>
+            <Bot className={"size-8 stroke-1"} />
+          </p>
+          <p className={"font-semibold text-xs lg:text-sm xl:text-sm"}>
+            Create AI
           </p>
         </div>
         <div className="bg-white p-3 text-center rounded-2xl">

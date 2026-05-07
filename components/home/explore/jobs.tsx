@@ -23,8 +23,8 @@ export const Jobs: FC = () => {
         </Button>
       </div>
       <p className={"text-sm md:text-base max-w-sm"}>
-        Discover jobs, internships, and opportunities created and curated by
-        Ripple.
+        Where creative tech careers begin. Opportunities, freelance gigs, and
+        career pathways curated for the Ripple community.
       </p>
 
       <div className={"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"}>

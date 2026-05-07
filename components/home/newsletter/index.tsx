@@ -49,17 +49,18 @@ export const Newsletter: FC = () => {
           "w-32 md:w-56 absolute left-20 md:left-44 lg:left-72 xl:left-80 top-0"
         }
       />
-      <div className={"max-w-sm mx-auto text-center space-y-6"}>
+      <div className={"max-w-xl mx-auto text-center space-y-6"}>
         <h2
           className={`${madeSoulmaze.className} text-lg md:text-xl lg:text-2xl xl:text-3xl uppercase`}
         >
           join our <br /> <span className="text-secondary">newsletter</span>
         </h2>
         <p className={"text-[#535862] font-medium"}>
-          Get updates on programs, events, opportunities, and insights delivered
-          straight to your inbox.
+          Get insider access to new programs, exclusive events, creator
+          opportunities, and insights from Africa&apos;s No 1 Creative Tech lab,
+          delivered straight to your inbox.
         </p>
-        <form onSubmit={onSubmit} className={"space-y-2"}>
+        <form onSubmit={onSubmit} className={"space-y-2 mx-auto md:w-8/12"}>
           <div className={"flex relative"}>
             <Input
               className={"w-full h-11 rounded-full border-gray-300"}

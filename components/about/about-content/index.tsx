@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { FC } from "react";
 import { Container } from "@/components/common/container";
 import { Testimonial } from "@/components/programs/testimonials";
@@ -7,6 +8,7 @@ export const AboutContent: FC = () => {
   return (
     <Container className="space-y-12 max-w-5xl py-8 text-base md:text-lg">
       <h2 className={`${madeSoulmaze.className} text-xl`}>Breifing</h2>
+
       <p>
         Ripple Universe is a cutting-edge creative tech startup dedicated to
         guiding individuals from diverse backgrounds into the cosmos of creative
@@ -21,20 +23,57 @@ export const AboutContent: FC = () => {
         Ripple Universe, we believe that everyone deserves a place in the tech
         landscape, and we are here to help make that happen.
       </p>
+      <h2 className={`${madeSoulmaze.className} text-xl`}>Hello Builder</h2>
+      <p>
+        <strong>
+          We Get It. Tech Feels Intimidating, and You’re a Creative.
+        </strong>
+        <br />
+        That&apos;s exactly why Ripple Universe exists. We&apos;re the bridge
+        between &quot;I&apos;m creative but not technical&quot; and
+        &quot;I&apos;m building a career in creative tech.&quot; Through
+        hands-on masterclasses, real community support, and programs like{" "}
+        <strong>Create AI</strong> and experiences like{" "}
+        <strong>Tech Without the Code</strong>, we guide you from curiosity to
+        confidence
+        <br />
+      </p>
+      <p>
+        {" "}
+        No gatekeeping. No prerequisites. Just real guidance and a community
+        that actually wants you to succeed.
+      </p>
+
+      <h2 className={`${madeSoulmaze.className} text-xl`}>The difference?</h2>
+      <p>
+        We walk with you. We focus on creativity and meeting technology. Ready
+        to stop watching everyone else level up and start building your own
+        creative tech career?
+      </p>
+
       <hr className="border-none bg-gray-200 h-[0.05rem]" />
       <div className="space-y-3">
         <h2 className={`${madeSoulmaze.className} text-xl`}>
           Address & contact
         </h2>
         <p>
-          Lagos - 3rd Avenue Osapa London Garden&apos;s Estate, Lekki, Lagos
-          State, Nigeria
+          Our Lagos Office - 3rd Avenue Osapa London Garden&apos;s Estate,
+          Lekki, Lagos State, Nigeria
         </p>
         <p>
-          London - 167-169 Great Portland Street, 5th Floor, London, United
-          Kingdom
+          Our London Office - 167-169 Great Portland Street, 5th Floor, London,
+          United Kingdom
         </p>
         <p>Contact Number - +44 7985 242146</p>
+        <p>
+          <Link href={"mailto:contact@rippleuniverse.org"}>
+            Email -{" "}
+            <span className={"underline hover:no-underline"}>
+              {" "}
+              contact@rippleuniverse.org
+            </span>
+          </Link>
+        </p>
       </div>
       <hr className="border-none bg-gray-200 h-[0.05rem]" />
 

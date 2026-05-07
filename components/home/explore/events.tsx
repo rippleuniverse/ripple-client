@@ -34,8 +34,8 @@ export const Events: FC = () => {
           events & <br /> <span className="text-secondary">experiences</span>
         </h2>
         <p className={"text-sm md:text-base leading-6"}>
-          Join live sessions, galleries, workshops, <br /> and community
-          meetups—online and <br /> offline.
+          Join live masterclasses, galleries, coworking spaces, <br /> and
+          community meetups, online and in real life / offline.
         </p>
       </div>
       <div>
