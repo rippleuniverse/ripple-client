@@ -36,7 +36,7 @@ export const DashboardHeader: FC = () => {
             </p>
           </div>
           <Image
-            src={"/images/blogs/avatar.png"}
+            src={user.data?.avatar || "/images/avatar.png"}
             alt={"Avatar"}
             width={40}
             height={40}

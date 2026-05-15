@@ -35,8 +35,8 @@ export const Hero: FC = () => {
               "text-[#F5F3F0B2] text-xs md:text-sm xl:text-base text-center lg:text-left"
             }
           >
-            Join live sessions, galleries, workshops, and community
-            meetups—online and offline.
+            Live masterclasses, galleries, coworking spaces, and community
+            meetups, online and in real life / offline.
           </p>
           <div className={"flex justify-center lg:justify-start"}>
             <Button asChild size={"lg"} variant={"secondary"}>

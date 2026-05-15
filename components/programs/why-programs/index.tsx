@@ -24,7 +24,7 @@ export const WhyPrograms: FC = () => {
           <Item title={"PREMIUM & FUTURE FACING"}>
             Each Ripple program is intentionally designed to create clarity,
             confidence, and creative direction. So learning feels relevant,
-            human, and future-ready
+            human, and future-ready.
           </Item>
         </div>
       </Container>

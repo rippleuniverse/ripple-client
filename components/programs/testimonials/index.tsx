@@ -58,7 +58,7 @@ export const Testimonials: FC = () => {
             className="bg-gray-50"
             name={"Henry E."}
             testimonial={
-              "The design challenge has challenged me to work on my first case study. Thanks, Ripple Universe, for nudging me into working on my first case study, like seriously thank you"
+              "The design challenge has challenged me to work on my first case study. Thanks, Ripple Universe, for nudging me into working on my first case study, like seriously thank you."
             }
           />
         </div>

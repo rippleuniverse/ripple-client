@@ -30,8 +30,9 @@ export const BlogItems: FC = () => {
               "text-[#4E4E4E] text-xs md:text-sm lg:text-base text-center max-w-md mx-auto"
             }
           >
-            Thoughtful essays, guides, and perspectives on creative technology,
-            careers, culture, and the future of work.
+            Thoughtful articles, series, updates, and perspectives on people,
+            things, and places in the cosmos of creative technology, careers,
+            culture, and the future of work.
           </p>
         </div>
 

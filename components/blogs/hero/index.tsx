@@ -31,7 +31,7 @@ export const Hero: FC = () => {
             <br />
             <span className={"text-[#FFF8C7]"}>from creative</span>
             <br />
-            tech
+            techies
           </h1>
           <p
             className={

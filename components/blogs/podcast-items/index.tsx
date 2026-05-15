@@ -30,8 +30,9 @@ export const PodcastItems: FC = () => {
               "text-[#4E4E4E] text-xs md:text-sm lg:text-base text-center max-w-md mx-auto"
             }
           >
-            Conversations at the intersection of creativity, culture, and
-            technology—featuring creatives, technologists, and industry voices.
+            At Ripple Pods we unpack everything from the 9-5 grind, digital
+            culture, dating in the algorithm age, to navigating friendships,
+            community, and the constant quest for growth.
           </p>
         </div>
 
