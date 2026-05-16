@@ -88,8 +88,8 @@ export const Item: FC<
     <div className="bg-white border-[0.1rem] border-gray-100 rounded-2xl p-4 flex gap-3 items-center justify-between">
       <div className="flex items-center space-x-4">
         <Image
-          src={item.item.featured_image}
-          alt={item.item.name}
+          src={item.item?.featured_image || "/images/no-image-placeholder.jpg"}
+          alt={item.item?.name || "Not available"}
           width={80}
           height={80}
           className={
@@ -112,7 +112,7 @@ export const Item: FC<
           <h2
             className={`${madeSoulmaze.className} line-clamp-1 text-sm md:text-base`}
           >
-            {item.item.name}
+            {item.item?.name || "Not available"}
           </h2>
           <p className={"text-gray-500 text-xs md:text-sm lg:text-base"}>
             Purchased on {item.invoice.created_at}

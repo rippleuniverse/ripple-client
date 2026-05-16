@@ -27,13 +27,18 @@ export const PurchaseDetails: FC = () => {
         <Details title={"Product"}>
           <div className="flex items-center gap-4">
             <Image
-              src={details.data.item.featured_image}
-              alt={details.data.item.name}
+              src={
+                details.data.item?.featured_image ||
+                "/images/no-image-placeholder.jpg"
+              }
+              alt={details.data.item?.name || "Not available"}
               width={200}
               height={200}
               className={"size-16 rounded-lg"}
             />
-            <p className={"text-xs md:text-sm"}>{details.data.item.name}</p>
+            <p className={"text-xs md:text-sm"}>
+              {details.data.item?.name || "Not available"}
+            </p>
           </div>
         </Details>
         <Details title={"Purchased on"}>

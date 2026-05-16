@@ -36,7 +36,7 @@ export type PurchaseItem = {
   item: {
     featured_image: string;
     name: string;
-  };
+  } | null;
   total: string;
 };
 
