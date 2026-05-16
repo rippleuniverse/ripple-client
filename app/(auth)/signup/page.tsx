@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <AuthWrapper>
-      <FormLayout title={"Sign up"} googleText={"Sign up with google"}>
+      <FormLayout title={"Sign up"}>
         <SignUp />
       </FormLayout>
     </AuthWrapper>
