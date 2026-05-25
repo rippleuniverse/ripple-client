@@ -1878,6 +1878,8 @@ pnpm build           # Create production build
 pnpm start           # Start production server
 pnpm lint            # Run ESLint
 
+
+
 # File structure
 src/
   helpers/           # API calls
