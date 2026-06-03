@@ -1,8 +1,9 @@
 "use client";
 
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { Badge } from "@/components/common/badge";
 import { Button } from "@/components/common/button";
 import {
@@ -17,15 +18,23 @@ import { useOverview as usePodcastsOverview } from "@/hooks/podcasts";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const Blogs: FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-150px",
+  });
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      animate={{ opacity: isInView ? 1 : 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
       className={
         "flex flex-col lg:flex-row bg-[#FFFFE9] rounded-xl p-8 h-max gap-16"
       }
     >
       <BlogInfo />
       <BlogList />
-    </div>
+    </motion.div>
   );
 };
 

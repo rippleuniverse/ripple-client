@@ -1,5 +1,8 @@
+"use client";
+
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useRef } from "react";
 import { madeSoulmaze } from "@/lib/fonts";
 
 type BuildingItemProps = PropsWithChildren<{
@@ -8,8 +11,18 @@ type BuildingItemProps = PropsWithChildren<{
 }>;
 
 export const BuildingItems: FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-150px",
+  });
+
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
+    <motion.div
+      ref={ref}
+      animate={{ x: isInView ? 0 : 100, opacity: isInView ? 1 : 0 }}
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3"
+    >
       <BuildingItem title={"LEARN"} image={"/images/home/building-1.png"}>
         In our community, you’ll find structured programs, courses, and labs to
         help you get started in creative AI and tech, so you can scale from
@@ -27,7 +40,7 @@ export const BuildingItems: FC = () => {
         Join a growing network of creatives, technologists, leaders, and
         partners, so you always have new connections.
       </BuildingItem>
-    </div>
+    </motion.div>
   );
 };
 

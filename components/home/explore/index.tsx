@@ -1,5 +1,7 @@
-import { Globe } from "lucide-react";
-import { FC } from "react";
+"use client";
+
+import { motion, useInView } from "motion/react";
+import { FC, useRef } from "react";
 import { Blogs } from "@/components/home/explore/blogs";
 import { Events } from "@/components/home/explore/events";
 import { Jobs } from "@/components/home/explore/jobs";
@@ -8,6 +10,15 @@ import { RippleShop } from "@/components/home/explore/ripple-shop";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const Explore: FC = () => {
+  const ref = useRef(null);
+  const secondRef = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-150px",
+  });
+  const isSecondInView = useInView(secondRef, {
+    margin: "-150px",
+  });
+
   return (
     <div
       className={
@@ -35,15 +46,25 @@ export const Explore: FC = () => {
           Cosmos of <br /> <span className={"text-yellow-300"}>ripple</span>
         </h1>
       </>
-      <div className="flex flex-col xl:flex-row gap-4">
+      <motion.div
+        ref={ref}
+        animate={{ opacity: isInView ? 1 : 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="flex flex-col xl:flex-row gap-4"
+      >
         <LearnSkills />
         <Events />
-      </div>
+      </motion.div>
       <Blogs />
-      <div className="flex flex-col xl:flex-row gap-4">
+      <motion.div
+        ref={secondRef}
+        animate={{ opacity: isSecondInView ? 1 : 0 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="flex flex-col xl:flex-row gap-4"
+      >
         <RippleShop />
         <Jobs />
-      </div>
+      </motion.div>
     </div>
   );
 };

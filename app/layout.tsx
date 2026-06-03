@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} overflow-x-hidden antialiased`}>
         <ReactQueryClientProvider>
           <NextTopLoader color={"#DE03B5"} />
           <Toaster />

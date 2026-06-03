@@ -1,11 +1,19 @@
+"use client";
+
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useRef } from "react";
 import { Button } from "@/components/common/button";
 import { Container } from "@/components/common/container";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const Hero: FC = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    margin: "-150px",
+  });
+
   return (
     <section>
       <Container
@@ -29,7 +37,13 @@ export const Hero: FC = () => {
             <Link href={"/signup"}>Join the Community</Link>
           </Button>
         </div>
-        <div className={""}>
+        <motion.div
+          ref={ref}
+          initial={{ scale: 0, origin: 0, opacity: 0 }}
+          animate={{ scale: isInView ? 1 : 0, opacity: isInView ? 1 : 0 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className={""}
+        >
           <Image
             src={"/images/home/hero-1.png"}
             className={"object-cover w-full"}
@@ -37,8 +51,41 @@ export const Hero: FC = () => {
             width={900}
             height={625}
           />
-        </div>
+        </motion.div>
       </Container>
     </section>
+  );
+};
+
+export const HeroImages: FC = () => {
+  return (
+    <>
+      <motion.div
+        animate={{ y: [0, -25, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className={"w-48 md:w-72 lg:w-96 absolute right-0 top-24"}
+      >
+        <Image
+          src={"/images/home/hero-2.png"}
+          alt={"Hero 2"}
+          width={355}
+          height={800}
+          className={"w-full object-cover"}
+        />
+      </motion.div>
+      <motion.div
+        animate={{ y: [0, -25, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className={"w-16 md:w-36 absolute left-0 bottom-32 md:bottom-44"}
+      >
+        <Image
+          src={"/images/home/hero-3.png"}
+          alt={"Hero 2"}
+          width={185}
+          height={195}
+          className={"w-full object-cover"}
+        />
+      </motion.div>
+    </>
   );
 };
