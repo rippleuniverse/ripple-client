@@ -61,7 +61,11 @@ const BuildingItem: FC<BuildingItemProps> = ({ title, image, children }) => {
           {children}
         </p>
       </div>
-      <div className={"flex justify-end"}>
+      <motion.div
+        animate={{ y: [0, -10, 0] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        className={"flex justify-end"}
+      >
         <Image
           src={image}
           alt={"Learn"}
@@ -69,7 +73,7 @@ const BuildingItem: FC<BuildingItemProps> = ({ title, image, children }) => {
           height={200}
           className={"object-cover w-36 md:w-48 translate-x-4 translate-y-8"}
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

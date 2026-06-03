@@ -9,8 +9,12 @@ import { Container } from "@/components/common/container";
 import { madeSoulmaze } from "@/lib/fonts";
 
 export const Hero: FC = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, {
+  const headingRef = useRef(null);
+  const imageRef = useRef(null);
+  const isHeadingInView = useInView(headingRef, {
+    margin: "-150px",
+  });
+  const isImageInView = useInView(imageRef, {
     margin: "-150px",
   });
 
@@ -21,12 +25,516 @@ export const Hero: FC = () => {
           "max-w-4xl text-center space-y-6 md:space-y-8 overflow-hidden relative"
         }
       >
-        <h1
+        <motion.h1
+          ref={headingRef}
           className={`text-white text-center ${madeSoulmaze.className} text-2xl md:text-3xl lg:text-5xl xl:text-6xl`}
+          initial="hidden"
+          animate={isHeadingInView ? "visible" : "hidden"}
+          variants={{
+            visible: {
+              transition: {
+                staggerChildren: 0.1,
+              },
+            },
+            hidden: {},
+          }}
         >
-          Creative <br /> <span className={"text-secondary"}>Tech Lab</span> for
-          the <br /> Future
-        </h1>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            C
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            r
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            e
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            a
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            t
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            i
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            v
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            e
+          </motion.span>
+          <br />{" "}
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            T
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            e
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            c
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            h
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            l
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            a
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+            className={"text-secondary"}
+          >
+            b
+          </motion.span>{" "}
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            f
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            o
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            r
+          </motion.span>{" "}
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            t
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            h
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            e
+          </motion.span>
+          <br />{" "}
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            F
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            u
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            t
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            u
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            r
+          </motion.span>
+          <motion.span
+            style={{ display: "inline-block" }}
+            variants={{
+              hidden: {
+                y: 30,
+                opacity: 0,
+                filter: "blur(10px)",
+              },
+              visible: {
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              },
+            }}
+            transition={{ duration: 0.25 }}
+          >
+            e
+          </motion.span>
+        </motion.h1>
         <p className={"text-[#F5F3F0B2] text-xs md:text-base lg:text-lg"}>
           Ripple Universe™ equips creatives, technologists, and innovators with
           the skills, community, and culture needed to thrive in AI and emerging
@@ -38,9 +546,12 @@ export const Hero: FC = () => {
           </Button>
         </div>
         <motion.div
-          ref={ref}
+          ref={imageRef}
           initial={{ scale: 0, origin: 0, opacity: 0 }}
-          animate={{ scale: isInView ? 1 : 0, opacity: isInView ? 1 : 0 }}
+          animate={{
+            scale: isImageInView ? 1 : 0,
+            opacity: isImageInView ? 1 : 0,
+          }}
           transition={{ duration: 0.25, ease: "easeOut" }}
           className={""}
         >
