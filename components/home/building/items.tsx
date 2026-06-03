@@ -21,12 +21,12 @@ export const BuildingItems: FC = () => {
       ref={ref}
       animate={{ x: isInView ? 0 : 100, opacity: isInView ? 1 : 0 }}
       transition={{ duration: 0.2, ease: "easeOut" }}
-      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3"
+      className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3 overflow-x-hidden"
     >
       <BuildingItem title={"LEARN"} image={"/images/home/building-1.png"}>
-        In our community, you’ll find structured programs, courses, and labs to
-        help you get started in creative AI and tech, so you can scale from
-        learning to earning.
+        In our community, you&apos;ll find structured programs, courses, and
+        labs to help you get started in creative AI and tech, so you can scale
+        from learning to earning.
       </BuildingItem>
       <BuildingItem title={"Experience"} image={"/images/home/building-2.png"}>
         Take part in events, galleries, masterclasses, and hands-on experiences

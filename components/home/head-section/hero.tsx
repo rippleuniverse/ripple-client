@@ -15,7 +15,7 @@ export const Hero: FC = () => {
     margin: "-150px",
   });
   const isImageInView = useInView(imageRef, {
-    margin: "-150px",
+    margin: "-20px",
   });
 
   return (
